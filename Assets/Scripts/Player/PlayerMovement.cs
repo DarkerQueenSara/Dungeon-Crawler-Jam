@@ -19,6 +19,10 @@ namespace Player
         /// </summary>
         private Vector3 _origPos, _targetPos;
         /// <summary>
+        /// The original and target rotations
+        /// </summary>
+        private Vector3 _origRot, _targetRot;
+        /// <summary>
         /// Gets a value indicating whether this instance is moving.
         /// </summary>
         /// <value>
@@ -32,15 +36,19 @@ namespace Player
         private void Update()
         {
             // If the player can move, we check for a WASD input
-            if (!TurnManager.Instance.CanMove()) return;
+            //if (!TurnManager.Instance.CanMove()) return;
             if (Input.GetKeyDown(KeyCode.W))
-                StartCoroutine(MovePlayer(Vector3.up));
+                StartCoroutine(MovePlayer(transform.forward));
             if (Input.GetKeyDown(KeyCode.A))
-                StartCoroutine(MovePlayer(Vector3.left));
+                StartCoroutine(MovePlayer(transform.right * -1));
             if (Input.GetKeyDown(KeyCode.S))
-                StartCoroutine(MovePlayer(Vector3.down));
+                StartCoroutine(MovePlayer(transform.forward * -1));
             if (Input.GetKeyDown(KeyCode.D))
-                StartCoroutine(MovePlayer(Vector3.right));
+                StartCoroutine(MovePlayer(transform.right));
+            if (Input.GetKeyDown(KeyCode.Q))
+                StartCoroutine(RotatePlayer(-90));
+            if (Input.GetKeyDown(KeyCode.E))
+                StartCoroutine(RotatePlayer(90));
         }
 
         /// <summary>
@@ -67,15 +75,16 @@ namespace Player
 
             //We begin processing the turn prior to beginning the movement, so the gremlins move at the same time,
             //not after the player moves
-            TurnManager.Instance.ProcessTurn(_targetPos);
+            //TurnManager.Instance.ProcessTurn(_targetPos);
 
-            PlayerEntity.Instance.audioManager.Play("Moving");
+            //PlayerEntity.Instance.audioManager.Play("Moving");
 
             //Using a coroutine, we move the player without teleporting them.
-            while (elapsedTime < TurnManager.Instance.unitTimeToMove)
+            //while (elapsedTime < TurnManager.Instance.unitTimeToMove)
+            while (elapsedTime < 0.2f)
             {
-                transform.position =
-                    Vector3.Lerp(_origPos, _targetPos, elapsedTime / TurnManager.Instance.unitTimeToMove);
+                //transform.position = Vector3.Lerp(_origPos, _targetPos, elapsedTime / TurnManager.Instance.unitTimeToMove);
+                transform.position = Vector3.Lerp(_origPos, _targetPos, elapsedTime / 0.2f);
                 elapsedTime += Time.deltaTime;
 
                 yield return null;
@@ -83,6 +92,41 @@ namespace Player
 
 
             transform.position = _targetPos;
+            IsMoving = false;
+        }
+        
+        /// <summary>
+        /// Rotates the player.
+        /// </summary>
+        /// <param name="angle">The angle increment.</param>
+        /// <returns></returns>
+        private IEnumerator RotatePlayer(int angle)
+        {
+            IsMoving = true;
+
+            _origRot = transform.rotation.eulerAngles;
+            _targetRot = _origRot + Vector3.up * angle;
+
+            var elapsedTime = 0.0f;
+            
+            //We begin processing the turn prior to beginning the movement, so the enemies move at the same time,
+            //not after the player moves
+            //TurnManager.Instance.ProcessTurn(transform.position);
+
+            //PlayerEntity.Instance.audioManager.Play("Moving");
+
+            //Using a coroutine, we move the player without teleporting them.
+            //while (elapsedTime < TurnManager.Instance.unitTimeToMove)
+            while (elapsedTime < 0.2f)
+            {
+                //transform.rotation = Quaternion.Euler(Vector3.Lerp(_origRot, _targetRot, elapsedTime / TurnManager.Instance.unitTimeToMove));
+                transform.rotation = Quaternion.Euler(Vector3.Lerp(_origRot, _targetRot, elapsedTime / 0.2f));
+                elapsedTime += Time.deltaTime;
+
+                yield return null;
+            }
+            
+            transform.rotation = Quaternion.Euler(_targetRot);
             IsMoving = false;
         }
     }

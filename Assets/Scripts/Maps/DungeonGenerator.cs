@@ -40,9 +40,22 @@ namespace Maps
         public Dungeon Dungeon { get; private set; }
         
         /// <summary>
+        /// Clears tje map in the editor.
+        /// </summary>
+        [ContextMenu("Clear Dungeon")]
+        public void Clear()
+        {
+            for (int i = wallsParent.transform.childCount; i > 0; --i)
+                DestroyImmediate(wallsParent.transform.GetChild(0).gameObject);
+
+            for (int i = groundParent.transform.childCount; i > 0; --i)
+                DestroyImmediate(groundParent.transform.GetChild(0).gameObject);
+        }        
+        
+        /// <summary>
         /// Generates a map in the editor.
         /// </summary>
-        [ContextMenu("Generate Dungeon (CLEAR MAP FIRST!!!)")]
+        [ContextMenu("Generate Dungeon")]
         public void Generate()
         {
             for (int i = wallsParent.transform.childCount; i > 0; --i)
