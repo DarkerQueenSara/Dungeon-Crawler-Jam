@@ -66,7 +66,9 @@ namespace Player
             _targetPos = _origPos + direction;
 
             //If there's an obstacle we stop
-            if (Physics2D.OverlapBox(_targetPos, new Vector2(0.5f, 0.5f), 0, obstacles) != null)
+            Collider[] col =
+                Physics.OverlapBox(_targetPos, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, obstacles);
+            if (col.Length > 0)
             {
                 IsMoving = false;
 
