@@ -58,6 +58,8 @@ namespace Maps
         /// <param name="cellsToRemove">The cells to remove.</param>
         public void DigCorridors(int cellsToRemove)
         {
+            int maxCellsToRemove = _maxWidth * _maxHeight - (_maxWidth + _maxWidth + _maxHeight - 2 + _maxHeight - 2);
+            cellsToRemove = maxCellsToRemove == 1 ? 1 : Mathf.Clamp(cellsToRemove, 0, maxCellsToRemove);
             //First we get the position in the middle of the grid
             Vector2Int walkerPosition = new Vector2Int(_maxWidth / 2, _maxHeight / 2);
             //While there are still cells to remove

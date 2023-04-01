@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-using UnityEngine.Tilemaps;
+﻿using UnityEditor;
+using UnityEngine;
 using Grid = Maps.Grid<Maps.GridCell<bool>>;
 
 namespace Maps
@@ -26,6 +26,10 @@ namespace Maps
         /// The ground rule tiles
         /// </summary>
         public GameObject groundObject;
+
+        [Header("Editor Generation Values")] public int width;
+        public int height;
+        public int cellsToRemove;
         
         /// <summary>
         /// Gets the attic/map generated.
@@ -36,25 +40,50 @@ namespace Maps
         public Dungeon Dungeon { get; private set; }
         
         /// <summary>
+        /// Generates a map in the editor.
+        /// </summary>
+        [ContextMenu("Generate Dungeon (CLEAR MAP FIRST!!!)")]
+        public void Generate()
+        {
+            for (int i = wallsParent.transform.childCount; i > 0; --i)
+                DestroyImmediate(wallsParent.transform.GetChild(0).gameObject);
+
+            for (int i = groundParent.transform.childCount; i > 0; --i)
+                DestroyImmediate(groundParent.transform.GetChild(0).gameObject);
+
+            Generate(width, height, cellsToRemove, true);
+        }
+        
+        /// <summary>
         /// Generates a map.
         /// </summary>
-        /// <param name="width">The map width.</param>
-        /// <param name="height">The map height.</param>
-        /// <param name="cellsToRemove">The cells to remove from the grid.</param>
-        public void Generate(int width, int height, int cellsToRemove)
+        /// <param name="w">The map w.</param>
+        /// <param name="h">The map h.</param>
+        /// <param name="ctr">The cells to remove from the grid.</param>
+        public void Generate(int w, int h, int ctr, bool editor=false)
         {
-            //We clear the objects
-            
+            if (!editor)
+            {
+                foreach (Transform child in wallsParent.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+
+                foreach (Transform child in groundParent.transform)
+                {
+                    Destroy(child.gameObject);
+                }
+            }
+
             //Create an attic and dig the corridors
-            Dungeon = new Dungeon(width, height);
-            Dungeon.DigCorridors(
-                Mathf.Clamp(cellsToRemove, 1, width * height - (width + width + height - 2 + height - 2)));
+            Dungeon = new Dungeon(w, h);
+            Dungeon.DigCorridors(ctr);
             //For each cell we set the correct tile graphic
             foreach (var cell in Dungeon.Grid.Cells)
                 if (cell.Value)
-                    Instantiate(wallObject, new Vector3(cell.X, cell.Y, 0), Quaternion.identity, wallObject.transform);
+                    Instantiate(wallObject, new Vector3(cell.X, 0, cell.Y), Quaternion.identity, wallsParent.transform);
                 else
-                    Instantiate(groundObject, new Vector3(cell.X, cell.Y, 0), Quaternion.identity, groundObject.transform);
+                    Instantiate(groundObject, new Vector3(cell.X, 0, cell.Y), Quaternion.identity, groundParent.transform);
         }
     }
 }
