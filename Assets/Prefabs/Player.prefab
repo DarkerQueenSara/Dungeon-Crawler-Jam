@@ -11,8 +11,10 @@ GameObject:
   - component: {fileID: 753870626864856289}
   - component: {fileID: 3447150484103251298}
   - component: {fileID: 1220487935807599788}
-  - component: {fileID: 7990995516357725601}
+  - component: {fileID: 6563976548662211366}
   - component: {fileID: 1981956027689709276}
+  - component: {fileID: 7990995516357725601}
+  - component: {fileID: 1721188780475470775}
   - component: {fileID: 4967900700056638253}
   m_Layer: 6
   m_Name: Player
@@ -87,6 +89,38 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6563976548662211366
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438237359411368064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1dea33a0d37d0d468474af8b9dc0bff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 0}
+  movement: {fileID: 0}
+  inventory: {fileID: 0}
+  animator: {fileID: 0}
+  audioManager: {fileID: 0}
+--- !u!114 &1981956027689709276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438237359411368064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77401b9debd38aa49904d1deeba28cde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!136 &7990995516357725601
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -110,7 +144,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1981956027689709276
+--- !u!114 &1721188780475470775
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,12 +153,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 438237359411368064}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77401b9debd38aa49904d1deeba28cde, type: 3}
+  m_Script: {fileID: 11500000, guid: 315d743d0eaf39147951f79a7f838edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacles:
+  maxHealth: 10
+  currentHealth: 0
+  damageables:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 0
 --- !u!54 &4967900700056638253
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -204,7 +240,7 @@ Camera:
   m_ShutterSpeed: 0.005
   m_Aperture: 16
   m_FocusDistance: 10
-  m_FocalLength: 50
+  m_FocalLength: 20.78461
   m_BladeCount: 5
   m_Curvature: {x: 2, y: 11}
   m_BarrelClipping: 0.25
@@ -219,7 +255,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 95
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
