@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using Extensions;
 using Items;
 using Player;
 using UnityEngine;
@@ -7,11 +9,17 @@ using UnityEngine.EventSystems;
 
 namespace UI
 {
-    public class GameWindow: MonoBehaviour, IDropHandler
+    public class GameWindow: MonoBehaviour, IDropHandler, IPointerClickHandler
     {
 
+        [SerializeField] protected RectTransform rawImageRectTrans;
+        [SerializeField] protected Camera renderToTextureCamera;
+        
         public List<GameObject> itemPrefabs;
         public LayerMask obstacles;
+        public LayerMask environmentItems;
+
+        private GameObject _clickedItem;
         
         /// <summary>
         /// What happens when you drop an object on the game window
@@ -40,6 +48,26 @@ namespace UI
             //Destroy the item in the UI
             Destroy(inventoryItem.gameObject);
         }
+        
+        /// <summary>
+        /// What happens when you click an object on the game window
+        /// </summary>
+        /// <param name="eventData"></param>
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Vector2 localPoint = Vector2.zero;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rawImageRectTrans, eventData.position, null, out localPoint);
+            Vector2 normalizedPoint = Rect.PointToNormalized(rawImageRectTrans.rect, localPoint);
+            Ray renderRay = renderToTextureCamera.ViewportPointToRay(normalizedPoint);
+            if (Physics.Raycast(renderRay, out var raycastHit))
+            {
+                if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer))
+                {
+                    _clickedItem = raycastHit.collider.gameObject;
+                    PickUpItem(_clickedItem);
+                }
+            }
+        }
 
         /// <summary>
         /// Get the right prefab to instantiate in the map
@@ -49,6 +77,12 @@ namespace UI
         private GameObject GetRightItem(ItemType itemType)
         {
             return itemPrefabs.FirstOrDefault(prefab => prefab.GetComponent<EnvironmentItem>().item == itemType);
+        }
+
+        private void PickUpItem(GameObject item)
+        {
+            InventoryManager.Instance.AddItem(item);
+            _clickedItem = null;
         }
     }
 }

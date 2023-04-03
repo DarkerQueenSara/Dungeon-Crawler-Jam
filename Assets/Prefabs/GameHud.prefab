@@ -1762,6 +1762,7 @@ GameObject:
   - component: {fileID: 4293375935269976706}
   - component: {fileID: 4959540849722754852}
   - component: {fileID: 8861761158872921827}
+  - component: {fileID: 8541577332490020330}
   m_Layer: 5
   m_Name: Game Window
   m_TagString: Untagged
@@ -1824,6 +1825,29 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &8541577332490020330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4188406676518477769}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b3961e763d2641c49aed9ae2895c533c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UICamera: {fileID: 0}
+  RawImageRectTrans: {fileID: 4293375935269976706}
+  RenderToTextureCamera: {fileID: 0}
+  itemPrefabs:
+  - {fileID: 2473550862903268977, guid: 4fd0d8e38df2c5446ba24a351533116a, type: 3}
+  obstacles:
+    serializedVersion: 2
+    m_Bits: 192
+  environmentItems:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1 &5096796595506591177
 GameObject:
   m_ObjectHideFlags: 0

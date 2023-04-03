@@ -67,7 +67,7 @@ namespace Player
 
             //If there's an obstacle we stop
             Collider[] col =
-                Physics.OverlapBox(_targetPos, new Vector3(0.1f, 0.1f, 0.1f), Quaternion.identity, obstacles);
+                Physics.OverlapBox(_targetPos, new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, obstacles);
             if (col.Length > 0)
             {
                 IsMoving = false;
