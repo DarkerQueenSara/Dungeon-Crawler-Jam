@@ -11,7 +11,7 @@ namespace UI.Items
 
         private void Start()
         {
-            item = ItemType.Handgun; 
+            item = ItemType.Shotgun; 
             currentAmmo = maxAmmo; 
         }
 
@@ -24,7 +24,7 @@ namespace UI.Items
 
         public override bool CombineItem(InventoryItem item)
         {
-            if(item.item == ItemType.HandgunAmmo)
+            if(item.item == ItemType.ShotgunAmmo)
             {
                 return true;
             }  
