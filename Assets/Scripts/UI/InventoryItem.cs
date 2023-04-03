@@ -6,12 +6,12 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public abstract class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         [Header("UI")] public Image image;
 
         public ItemType item;
-        
+
         [HideInInspector] public Transform parentAfterDrag;
 
         private void Start()
@@ -37,5 +37,18 @@ namespace UI
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
         }
+
+        
+        public void OnRightMouse(PointerEventData eventData)
+        {
+            if(Input.GetMouseButtonDown(1)){
+                UseItem();
+            }
+        }
+
+        public abstract void UseItem();
+
+        public abstract bool CombineItem(InventoryItem item);
     }
+
 }
