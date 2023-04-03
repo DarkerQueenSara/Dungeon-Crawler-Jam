@@ -61,7 +61,7 @@ namespace Player
         private void Start()
         {
             //Get all components from the GameObject
-            //health = GetComponent<PlayerHealth>();
+            health = GetComponent<PlayerHealth>();
             movement = GetComponent<PlayerMovement>();
             //inventory = GetComponent<PlayerInventory>();
             //animator = GetComponent<Animator>();
