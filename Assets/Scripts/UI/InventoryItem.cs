@@ -1,4 +1,5 @@
 ﻿using System;
+using Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ namespace UI
     {
         [Header("UI")] public Image image;
 
+        public ItemType item;
+        
         [HideInInspector] public Transform parentAfterDrag;
 
         private void Start()
