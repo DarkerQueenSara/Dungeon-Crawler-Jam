@@ -14,11 +14,6 @@ namespace UI
 
         [HideInInspector] public Transform parentAfterDrag;
 
-        private void Start()
-        {
-            image = GetComponent<Image>();
-        }
-
         public void OnBeginDrag(PointerEventData eventData)
         {
             image.raycastTarget = false;

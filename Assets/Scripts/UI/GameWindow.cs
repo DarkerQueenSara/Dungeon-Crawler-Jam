@@ -40,6 +40,10 @@ namespace UI
             //Check which prefab to spawn in the world
             //Because when the player discards an item, it is left on the floor ahead of them
             GameObject toSpawn = GetRightItem(inventoryItem.item);
+            if (toSpawn == null)
+            {
+                return;
+            }
             //Get spawn position
             Physics.Raycast(posAhead, Vector3.down, out RaycastHit hit);
             float height = hit.distance;
