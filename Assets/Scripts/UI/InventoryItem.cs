@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public abstract class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+    public abstract class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler, IPointerClickHandler
     {
         [Header("UI")] public Image image;
 
@@ -39,9 +39,10 @@ namespace UI
         }
 
         
-        public void OnRightMouse(PointerEventData eventData)
+        public void OnPointerClick(PointerEventData eventData)
         {
-            if(Input.GetMouseButtonDown(1)){
+            if (eventData.button == PointerEventData.InputButton.Right)
+            {
                 UseItem();
             }
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using UI;
 using Items;
+using UnityEngine;
 
 namespace UI.Items
 {
@@ -17,6 +18,8 @@ namespace UI.Items
 
         public override void UseItem()
         {
+            currentAmmo--;
+            Debug.Log("Bang!");
             //TODO shoot
 
         }
