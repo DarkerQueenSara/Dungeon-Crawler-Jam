@@ -41,7 +41,13 @@ namespace UI
                 return;
             }
 
-            Instantiate(GetRightItem(environmentItem.GetComponent<EnvironmentItem>().item), freeSlot.transform.position, Quaternion.identity, freeSlot.transform);
+            EnvironmentItem clickedItem = environmentItem.GetComponent<EnvironmentItem>();
+            GameObject toSpawn = GetRightItem(clickedItem.item);
+            if (toSpawn == null)
+            {
+                Debug.Log("You forgot the prefab...");
+            }
+            Instantiate(toSpawn, freeSlot.transform.position, Quaternion.identity, freeSlot.transform);
             Destroy(environmentItem);
         }
         
@@ -64,7 +70,14 @@ namespace UI
         /// <returns></returns>
         private GameObject GetRightItem(ItemType itemType)
         {
-            return inventoryItemPrefabs.FirstOrDefault(prefab => prefab.GetComponent<EnvironmentItem>().item == itemType);
+            foreach (GameObject prefab in inventoryItemPrefabs)
+            {
+                if (prefab.GetComponent<InventoryItem>().item == itemType)
+                {
+                    return prefab;
+                }
+            }
+            return null;
         }
     }
 }

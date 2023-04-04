@@ -42,6 +42,7 @@ namespace UI
             GameObject toSpawn = GetRightItem(inventoryItem.item);
             if (toSpawn == null)
             {
+                Debug.Log("You forgot the prefab...");
                 return;
             }
             //Get spawn position
@@ -63,8 +64,10 @@ namespace UI
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rawImageRectTrans, eventData.position, null, out localPoint);
             Vector2 normalizedPoint = Rect.PointToNormalized(rawImageRectTrans.rect, localPoint);
             Ray renderRay = renderToTextureCamera.ViewportPointToRay(normalizedPoint);
+            Debug.DrawLine(renderRay.origin, renderRay.direction, Color.black, 5f);
             if (Physics.Raycast(renderRay, out var raycastHit))
             {
+                Debug.Log(raycastHit.collider.gameObject);
                 if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer))
                 {
                     _clickedItem = raycastHit.collider.gameObject;
