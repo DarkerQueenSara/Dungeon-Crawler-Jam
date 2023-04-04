@@ -77,20 +77,20 @@ namespace Managers
         }
 
         /// <summary>
-        /// Adds a gremlin to the manager.
+        /// Adds a zombie to the manager.
         /// </summary>
-        /// <param name="g">The gremlin.</param>
-        public void AddGremlin(Gremlin g)
+        /// <param name="g">The zombie.</param>
+        public void AddZombie(Gremlin g)
         {
             _enemiesInMap ??= new List<Gremlin>();
             _enemiesInMap.Add(g);
         }
         
         /// <summary>
-        /// Gets the current number of gremlins.
+        /// Gets the current number of zombies.
         /// </summary>
-        /// <returns>Number of Gremlins</returns>
-        public int GetNumberOfGremlins()
+        /// <returns>Number of zombies</returns>
+        public int GetNumberOfZombies()
         {
             return _enemiesInMap.Count;
         }
@@ -113,7 +113,7 @@ namespace Managers
         /// <returns></returns>
         private IEnumerator TurnCoroutine(Vector3 playerPos)
         {
-            //Move all the gremlins
+            //Move all the zombies
             foreach (var g in _enemiesInMap) g.Move(playerPos);
 
             //Wait until they have finished moving
@@ -121,25 +121,6 @@ namespace Managers
             
             //Increase the number of turns, and if the right amount has passed, take damage from lack of sleep
             CurrentTurn++;
-
-            //If all the gremlins are caught, spawn the portal that can end the srage.
-            if (_enemiesInMap.Count == 0 && portalInMap == null)
-            {
-                GameManager.Instance.SpawnEndPortal();
-                PlayerHUD.Instance.AddMessage("The level exit has spawned!");
-            }
-
-            //If the portal has been spawned and the player stepped into it, open the shop and destroy the portal.
-            if (portalInMap != null)
-                if (portalInMap.hasPlayer)
-                {
-                    //TODO visto que isto não chama o abrir loja
-                    //que gera o novo nivel
-                    //isto não faz nada
-                    var portal = portalInMap.gameObject;
-                    portalInMap = null;
-                    Destroy(portal);
-                }
 
             ProcessingTurn = false;
         }
@@ -156,10 +137,10 @@ namespace Managers
         }
 
         /// <summary>
-        /// Check if the player or gremlins are moving
+        /// Check if the player or zombies are moving
         /// </summary>
         /// <returns>
-        ///   <c>true</c> if the player or a gremlin is still moving; otherwise, <c>false</c>.
+        ///   <c>true</c> if the player or a zombie is still moving; otherwise, <c>false</c>.
         /// </returns>
         private bool EntitiesAreMoving()
         {

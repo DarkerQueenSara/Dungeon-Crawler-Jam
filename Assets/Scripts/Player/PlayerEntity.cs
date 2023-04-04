@@ -43,10 +43,6 @@ namespace Player
         /// </summary>
         [HideInInspector] public PlayerMovement movement;
         /// <summary>
-        /// The PlayerInventory
-        /// </summary>
-        [HideInInspector] public PlayerInventory inventory;
-        /// <summary>
         /// The animator
         /// </summary>
         [HideInInspector] public Animator animator;
@@ -63,7 +59,6 @@ namespace Player
             //Get all components from the GameObject
             health = GetComponent<PlayerHealth>();
             movement = GetComponent<PlayerMovement>();
-            //inventory = GetComponent<PlayerInventory>();
             //animator = GetComponent<Animator>();
             //audioManager = GetComponent<AudioManager>();
         }

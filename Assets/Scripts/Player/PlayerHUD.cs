@@ -81,7 +81,6 @@ namespace Player
             //Each frame we update how much energy/traps/gold the player has,
             //as well as how many turns are left before they take damage from sleep loss.
             energyText.text = PlayerEntity.Instance.health.currentHealth + "/" + PlayerEntity.Instance.health.maxHealth;
-            goldText.text = PlayerEntity.Instance.inventory.CurrentGold.ToString();
         }
 
         /// <summary>
