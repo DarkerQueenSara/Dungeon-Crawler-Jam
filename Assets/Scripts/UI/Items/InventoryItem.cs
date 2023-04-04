@@ -1,5 +1,6 @@
 ﻿using System;
 using Items;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -32,7 +33,6 @@ namespace UI
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
         }
-
         
         public void OnPointerClick(PointerEventData eventData)
         {

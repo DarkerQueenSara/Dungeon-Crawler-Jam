@@ -2,8 +2,10 @@
 
 namespace Items
 {
-    public class EnvironmentItem : MonoBehaviour
+    public abstract class EnvironmentItem : MonoBehaviour
     {
         public ItemType item;
+        public bool stackable;
+        public int amount;
     }
 }

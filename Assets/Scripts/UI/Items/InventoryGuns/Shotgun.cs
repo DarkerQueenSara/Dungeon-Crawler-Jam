@@ -1,23 +1,25 @@
-using System;
-using UI;
-using Items;
+﻿using Items;
 
-namespace UI.Items
+namespace UI.Items.InventoryGuns
 {
-    public class ShotgunAmmo: InventoryItem
+    public class Shotgun: InventoryGun
     {
+        
         private void Start()
         {
-            item = ItemType.ShotgunAmmo; 
+            base.Start();
+            item = ItemType.Shotgun;
         }
 
         public override void UseItem()
         {
+            base.UseItem();
+            //TODO shoot
         }
 
         public override bool CombineItem(InventoryItem item)
         {
-            if(item.item == ItemType.Shotgun)
+            if(item.item == ItemType.ShotgunAmmo)
             {
                 return true;
             }  

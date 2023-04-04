@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Items;
 using Player;
@@ -34,20 +35,21 @@ namespace UI
 
         public void AddItem(GameObject environmentItem)
         {
-            GameObject freeSlot = GetFirstFreeSlot();
-            if (freeSlot == null)
-            {
-                PlayerHUD.Instance.AddMessage("You don't have room in your inventory");
-                return;
-            }
-
             EnvironmentItem clickedItem = environmentItem.GetComponent<EnvironmentItem>();
+
+            GameObject correctSlot = clickedItem.stackable ? GetExistingItemSlot(clickedItem.item) : GetFirstFreeSlot();
+
+            if (correctSlot == null)
+            {
+                PlayerHUD.Instance.AddMessage("You don't have room in your inventory.");
+            }
+            
             GameObject toSpawn = GetRightItem(clickedItem.item);
             if (toSpawn == null)
             {
                 Debug.Log("You forgot the prefab...");
             }
-            Instantiate(toSpawn, freeSlot.transform.position, Quaternion.identity, freeSlot.transform);
+            Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform);
             Destroy(environmentItem);
         }
         
@@ -61,6 +63,19 @@ namespace UI
                 }
             }
             return null;
+        }
+        
+        private GameObject GetExistingItemSlot(ItemType itemType)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                if (child.childCount > 0 && child.gameObject.GetComponent<InventoryItem>().item == itemType)
+                {
+                    return child.gameObject;
+                }
+            }
+            return GetFirstFreeSlot();
         }
         
         /// <summary>

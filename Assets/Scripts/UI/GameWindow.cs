@@ -4,6 +4,7 @@ using System.Linq;
 using Extensions;
 using Items;
 using Player;
+using UI.Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -49,7 +50,13 @@ namespace UI
             Physics.Raycast(posAhead, Vector3.down, out RaycastHit hit);
             float height = hit.distance;
             //Spawn the prefab at the right position
-            Instantiate(toSpawn, posAhead + (Vector3.down * height), Quaternion.identity);
+            GameObject spawnedObject = Instantiate(toSpawn, posAhead + (Vector3.down * height), Quaternion.identity);
+            //Adjust data of spawned object. If it can be stacked
+            if (inventoryItem is InventoryStackable inventoryStackable)
+            { 
+               EnvironmentItem spawnedItem = spawnedObject.GetComponent<EnvironmentItem>();
+               spawnedItem.amount = inventoryStackable.amount;
+            }
             //Destroy the item in the UI
             Destroy(inventoryItem.gameObject);
         }

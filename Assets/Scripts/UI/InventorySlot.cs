@@ -1,25 +1,24 @@
-using UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class InventorySlot : MonoBehaviour, IDropHandler
+namespace UI
 {
-
-    public void OnDrop(PointerEventData eventData)
+    public class InventorySlot : MonoBehaviour, IDropHandler
     {
-        if (transform.childCount == 0)
+
+        public void OnDrop(PointerEventData eventData)
         {
-            InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            inventoryItem.parentAfterDrag = transform;
+            if (transform.childCount == 0)
+            {
+                InventoryItem inventoryItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+                inventoryItem.parentAfterDrag = transform;
+            }
+            else
+            {
+               InventoryItem thisItem = transform.GetChild(0).GetComponent<InventoryItem>();
+               InventoryItem otherItem = eventData.pointerDrag.GetComponent<InventoryItem>();
+               thisItem.CombineItem(otherItem);
+            }
         }
-        //isto em principio troca items
-        //mas se tivermos combinar items como Resi, talvez não queiramos isso
-        /*else
-        {
-            InventoryItem thisItem = transform.GetChild(0).GetComponent<InventoryItem>();
-            InventoryItem otherItem = eventData.pointerDrag.GetComponent<InventoryItem>();
-            thisItem.transform.SetParent(otherItem.transform.parent);
-            otherItem.parentAfterDrag = transform;
-        }*/
     }
 }
