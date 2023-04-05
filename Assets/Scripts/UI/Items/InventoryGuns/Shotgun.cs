@@ -30,7 +30,7 @@ namespace UI.Items.InventoryGuns
                 else
                 {
                     this.currentAmmo = this.maxAmmo + ammo.amount;
-                    Destroy(item);
+                    Destroy(item.gameObject);
                 }
 
 

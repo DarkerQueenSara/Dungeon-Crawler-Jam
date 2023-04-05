@@ -1,4 +1,7 @@
+using System;
+using UI;
 using Items;
+using UI.Items.InventoryGuns;
 
 namespace UI.Items
 {
@@ -26,7 +29,7 @@ namespace UI.Items
                 else
                 {
                     gun.currentAmmo = gun.maxAmmo + this.amount;
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }
                 
             }  

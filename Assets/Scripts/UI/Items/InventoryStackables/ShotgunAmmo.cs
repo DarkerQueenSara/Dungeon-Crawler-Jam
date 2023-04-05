@@ -29,7 +29,7 @@ namespace UI.Items
                 else
                 {
                     gun.currentAmmo = gun.maxAmmo + this.amount;
-                    Destroy(this);
+                    Destroy(this.gameObject);
                 }
 
 
