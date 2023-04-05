@@ -18,13 +18,19 @@ namespace UI.Items
 
         private void Update()
         {
-            //ammoText.text = currentAmmo.ToString();
+            ammoText.text = currentAmmo.ToString();
         }
         
         public override void UseItem()
-        { 
-            Mathf.Clamp(currentAmmo-1, 0, maxAmmo);
-            Debug.Log("Bang!");
+        {
+            if (currentAmmo > 0)
+            {
+                currentAmmo--;
+                Debug.Log("Bang! (ammo left)" + currentAmmo);
+                //TODO shoot
+            }
+            else
+                Debug.Log("Out of ammo...");
         }
     }
 }

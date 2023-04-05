@@ -1,6 +1,7 @@
 using System;
 using UI;
 using Items;
+using UI.Items.InventoryGuns;
 
 namespace UI.Items
 {
@@ -15,13 +16,25 @@ namespace UI.Items
         {
         }
 
-        public override bool CombineItem(InventoryItem item)
+        public override void CombineItem(InventoryItem item)
         {
             if(item.item == ItemType.Shotgun)
             {
-                return true;
+                InventoryGun gun = (InventoryGun)item;
+                this.amount = this.amount - (gun.maxAmmo - gun.currentAmmo);
+                if (amount > 0)
+                {
+                    gun.currentAmmo = gun.maxAmmo;
+                }
+                else
+                {
+                    gun.currentAmmo = gun.maxAmmo + this.amount;
+                    Destroy(this);
+                }
+
+
             }  
-            return false;
+            
         }
 
     }

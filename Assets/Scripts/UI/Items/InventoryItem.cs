@@ -44,7 +44,7 @@ namespace UI
 
         public abstract void UseItem();
 
-        public abstract bool CombineItem(InventoryItem item);
+        public abstract void CombineItem(InventoryItem item);
     }
 
 }

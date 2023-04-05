@@ -18,13 +18,13 @@ namespace UI.Items
         {
         }
 
-        public override bool CombineItem(InventoryItem item)
+        public override void CombineItem(InventoryItem item)
         {
             if(item.item == ItemType.LightPotion)
             {
-                return true;
+                item.item = ItemType.StrongPotion;
+                Destroy(this);
             }  
-            return false;
         }
 
     }

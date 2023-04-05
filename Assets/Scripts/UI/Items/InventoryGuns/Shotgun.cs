@@ -5,6 +5,7 @@ namespace UI.Items.InventoryGuns
     public class Shotgun: InventoryGun
     {
         
+        
         private void Start()
         {
             base.Start();
@@ -14,16 +15,27 @@ namespace UI.Items.InventoryGuns
         public override void UseItem()
         {
             base.UseItem();
-            //TODO shoot
         }
 
-        public override bool CombineItem(InventoryItem item)
+        public override void CombineItem(InventoryItem item)
         {
             if(item.item == ItemType.ShotgunAmmo)
             {
-                return true;
+                InventoryStackable ammo = (InventoryStackable)item;
+                ammo.amount = ammo.amount - (this.maxAmmo - this.currentAmmo);
+                if (ammo.amount > 0)
+                {
+                    this.currentAmmo = this.maxAmmo;
+                }
+                else
+                {
+                    this.currentAmmo = this.maxAmmo + ammo.amount;
+                    Destroy(this);
+                }
+
+
             }  
-            return false;
+            
         }
 
     }

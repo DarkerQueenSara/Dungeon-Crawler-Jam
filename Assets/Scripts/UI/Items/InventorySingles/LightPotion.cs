@@ -18,16 +18,18 @@ namespace UI.Items
         public override void UseItem()
         {
             PlayerEntity.Instance.health.RestoreHealth(lifeToRecover);
+            Destroy(this);
 
         }
 
-        public override bool CombineItem(InventoryItem item)
+        public override void CombineItem(InventoryItem item)
         {
             if(item.item == ItemType.PotionBoost)
             {
-                return true;
+                this.item = ItemType.StrongPotion;
+                Destroy(item);
             }  
-            return false;
+            
         }
 
     }

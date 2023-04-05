@@ -6,12 +6,12 @@ namespace UI.Items
 {
     public abstract class InventoryStackable : InventoryItem
     {
-        [HideInInspector]public int amount;
+        public int amount;
         public TextMeshProUGUI amountText;
 
         public void Update()
-        {
-            //amountText.text = amount.ToString();
+        { 
+            amountText.text = amount.ToString();
         }
     }
 }
