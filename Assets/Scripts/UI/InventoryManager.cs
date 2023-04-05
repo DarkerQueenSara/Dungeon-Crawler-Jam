@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Items;
 using Player;
+using UI.Items;
 using UnityEngine;
 
 namespace UI
@@ -37,19 +36,30 @@ namespace UI
         {
             EnvironmentItem clickedItem = environmentItem.GetComponent<EnvironmentItem>();
 
-            GameObject correctSlot = clickedItem.stackable ? GetExistingItemSlot(clickedItem.item) : GetFirstFreeSlot();
+            GameObject correctSlot = clickedItem is EnvironmentStackable ? GetExistingItemSlot(clickedItem.item) : GetFirstFreeSlot();
 
             if (correctSlot == null)
             {
                 PlayerHUD.Instance.AddMessage("You don't have room in your inventory.");
             }
-            
-            GameObject toSpawn = GetRightItem(clickedItem.item);
-            if (toSpawn == null)
+
+            //If item already exists
+            if (correctSlot.transform.childCount > 0)
             {
-                Debug.Log("You forgot the prefab...");
+                EnvironmentStackable clickedItemStackable = (EnvironmentStackable)clickedItem;
+                correctSlot.transform.GetChild(0).GetComponent<InventoryStackable>().amount += clickedItemStackable.amount;
             }
-            Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform);
+            else
+            {
+                GameObject toSpawn = GetRightItem(clickedItem.item);
+                if (toSpawn == null)
+                {
+                    Debug.Log("You forgot the prefab...");
+                }
+
+                Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform);
+            }
+
             Destroy(environmentItem);
         }
         
@@ -70,7 +80,8 @@ namespace UI
             for (int i = 0; i < transform.childCount; i++)
             {
                 Transform child = transform.GetChild(i);
-                if (child.childCount > 0 && child.gameObject.GetComponent<InventoryItem>().item == itemType)
+                InventoryItem childItem = child.gameObject.GetComponent<InventoryItem>();
+                if (child.childCount > 0 && childItem is InventoryStackable && childItem.item == itemType)
                 {
                     return child.gameObject;
                 }

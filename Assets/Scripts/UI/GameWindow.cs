@@ -54,7 +54,7 @@ namespace UI
             //Adjust data of spawned object. If it can be stacked
             if (inventoryItem is InventoryStackable inventoryStackable)
             { 
-               EnvironmentItem spawnedItem = spawnedObject.GetComponent<EnvironmentItem>();
+               EnvironmentStackable spawnedItem = spawnedObject.GetComponent<EnvironmentStackable>();
                spawnedItem.amount = inventoryStackable.amount;
             }
             //Destroy the item in the UI
