@@ -65,7 +65,7 @@ namespace Player
 
         public Vector3 GetPositionAhead()
         {
-            return transform.position + Vector3.forward;
+            return transform.position + transform.forward;
         }
     }
 }

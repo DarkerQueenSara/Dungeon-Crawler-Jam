@@ -37,7 +37,7 @@ Transform:
   m_Children:
   - {fileID: 2788957234592315175}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3447150484103251298
 MeshFilter:
@@ -103,7 +103,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: {fileID: 0}
   movement: {fileID: 0}
-  inventory: {fileID: 0}
   animator: {fileID: 0}
   audioManager: {fileID: 0}
 --- !u!114 &1981956027689709276
@@ -253,7 +252,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.25
   far clip plane: 1000
   field of view: 95
   orthographic: 0

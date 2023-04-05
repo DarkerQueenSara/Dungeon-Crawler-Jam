@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3341358848526559961}
   - component: {fileID: 7951202338243575587}
   - component: {fileID: 2334334476483974766}
-  - component: {fileID: -842682048058367265}
   - component: {fileID: -5883915185434093468}
+  - component: {fileID: 2015269683497754319}
   m_Layer: 8
   m_Name: ShotgunEnvironment
   m_TagString: Untagged
@@ -107,19 +107,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-842682048058367265
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2473550862903268977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3cb40fc298d431dbc5f715bdc06a627, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: 2
 --- !u!54 &-5883915185434093468
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -147,3 +134,17 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &2015269683497754319
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2473550862903268977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce327cc9282d46c48e3160e8795eae62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: 2
+  currentAmmo: 6

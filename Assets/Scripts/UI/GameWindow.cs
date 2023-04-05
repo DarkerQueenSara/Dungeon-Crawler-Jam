@@ -74,8 +74,8 @@ namespace UI
             Debug.DrawLine(renderRay.origin, renderRay.direction, Color.black, 5f);
             if (Physics.Raycast(renderRay, out var raycastHit))
             {
-                Debug.Log(raycastHit.collider.gameObject);
-                if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer))
+                if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer) && 
+                    Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, environmentItems).Length > 0)
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     PickUpItem(_clickedItem);
@@ -90,7 +90,15 @@ namespace UI
         /// <returns></returns>
         private GameObject GetRightItem(ItemType itemType)
         {
-            return itemPrefabs.FirstOrDefault(prefab => prefab.GetComponent<EnvironmentItem>().item == itemType);
+            foreach (GameObject prefab in itemPrefabs)
+            {
+                if (prefab.GetComponent<EnvironmentItem>().item == itemType)
+                {
+                    return prefab;
+                }
+            }
+
+            return null;
         }
 
         private void PickUpItem(GameObject item)
