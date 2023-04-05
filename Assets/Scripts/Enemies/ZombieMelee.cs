@@ -77,7 +77,7 @@ namespace Enemies
                     if (Math.Abs((transform.position + direction).x - playerPos.x) <= 0.1f &&
                         Math.Abs((transform.position + direction).y - playerPos.y) <= 0.1f)
                     {
-                        StartCoroutine(MoveGremlin(Vector3.zero));
+                        StartCoroutine(MoveZombie(Vector3.zero));
                         return;
                     }
 
@@ -104,7 +104,7 @@ namespace Enemies
                     .OrderByDescending(x => GetDistanceInTiles(transform.position + x, playerPos)).ToList();
             */
             //Start moving, picking the first item on the list
-            StartCoroutine(possibleMoves.Count == 0 ? MoveGremlin(Vector3.zero) : MoveGremlin(possibleMoves[0]));
+            StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero) : MoveZombie(possibleMoves[0]));
         }
 
 
@@ -113,7 +113,7 @@ namespace Enemies
         /// </summary>
         /// <param name="direction">The direction.</param>
         /// <returns></returns>
-        private IEnumerator MoveGremlin(Vector3 direction)
+        private IEnumerator MoveZombie(Vector3 direction)
         {
             IsMoving = true;
 

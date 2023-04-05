@@ -10,9 +10,10 @@ namespace Enemies
     {
         public BaseState currentState;
 
-        public void RunStateMachine()
+        public void RunStateMachine(Vector3 playerPos)
         {
-            BaseState newState = currentState?.RunState();
+            
+            BaseState newState = currentState?.RunState(playerPos);
 
             if (currentState != null)
             {
