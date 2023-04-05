@@ -56,7 +56,7 @@ namespace Player
         /// </summary>
         /// <param name="direction">The direction.</param>
         /// <returns></returns>
-        private IEnumerator MovePlayer(Vector3 direction)
+        public IEnumerator MovePlayer(Vector3 direction)
         {
             IsMoving = true;
 
@@ -100,7 +100,7 @@ namespace Player
         /// </summary>
         /// <param name="angle">The angle increment.</param>
         /// <returns></returns>
-        private IEnumerator RotatePlayer(int angle)
+        public IEnumerator RotatePlayer(int angle)
         {
             IsMoving = true;
 

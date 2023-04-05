@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4764232240106889065}
   - component: {fileID: 865807725959064388}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: RotateRightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 6885650457342410910}
   - component: {fileID: 6051026584848337149}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ForwardButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 1435793693707954072}
   - component: {fileID: 6144724459248285787}
   m_Layer: 5
-  m_Name: Button
+  m_Name: RotateLeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -985,7 +985,7 @@ GameObject:
   - component: {fileID: 4798599048185836852}
   - component: {fileID: 7675459545287803594}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: LeftButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1446,6 +1446,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3277354639465256525}
+  - component: {fileID: 4230601059577082558}
   m_Layer: 5
   m_Name: GameHud
   m_TagString: Untagged
@@ -1481,6 +1482,31 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4230601059577082558
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3425293171255552508}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f134c91718d431fbb5c74fc0df10fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthBar: {fileID: 3115555165286806023}
+  forwardButton: {fileID: 6051026584848337149}
+  backwardButton: {fileID: 2524250681344289197}
+  leftButton: {fileID: 7675459545287803594}
+  rightButton: {fileID: 8072278562275226967}
+  rotateLeftButton: {fileID: 6144724459248285787}
+  rotateRightButton: {fileID: 865807725959064388}
+  logMessages:
+  - {fileID: 1223977570523227477}
+  - {fileID: 2838365493900648669}
+  - {fileID: 3379627095555986193}
+  - {fileID: 1899393332934957263}
+  - {fileID: 5699269914666769345}
 --- !u!1 &3511551169656126406
 GameObject:
   m_ObjectHideFlags: 0
@@ -1841,6 +1867,7 @@ MonoBehaviour:
   renderToTextureCamera: {fileID: 0}
   itemPrefabs:
   - {fileID: 2473550862903268977, guid: 4fd0d8e38df2c5446ba24a351533116a, type: 3}
+  - {fileID: 2473550862903268977, guid: 04a5898a1618aaa419a4fb2e816b3cc9, type: 3}
   obstacles:
     serializedVersion: 2
     m_Bits: 192
@@ -2211,7 +2238,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItemPrefabs:
-  - {fileID: 2473550862903268977, guid: 04a5898a1618aaa419a4fb2e816b3cc9, type: 3}
+  - {fileID: 5467317373689215300, guid: ebba56585883b4d43b986a585a39b580, type: 3}
 --- !u!1 &5910500368415371706
 GameObject:
   m_ObjectHideFlags: 0
@@ -2707,7 +2734,7 @@ GameObject:
   - component: {fileID: 1541909345350185278}
   - component: {fileID: 8072278562275226967}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: RightButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2829,7 +2856,7 @@ GameObject:
   - component: {fileID: 3602665596268647779}
   - component: {fileID: 2524250681344289197}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: BackwardsButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

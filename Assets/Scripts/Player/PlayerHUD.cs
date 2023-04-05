@@ -34,15 +34,16 @@ namespace Player
         }
 
         #endregion
-        
+
         /// <summary>
-        /// The energy text
+        /// The health bar image
         /// </summary>
-        public TextMeshProUGUI energyText;
+        public Image healthBar;
+
         /// <summary>
-        /// The gold text
+        /// The buttons in the UI to move the player
         /// </summary>
-        public TextMeshProUGUI goldText;
+        public Button forwardButton, backwardButton, leftButton, rightButton, rotateLeftButton, rotateRightButton;
         
         /// <summary>
         /// The log messages
@@ -69,8 +70,25 @@ namespace Player
 
             _filledSlots = new bool[logMessages.Count];
             for (var i = 0; i < _filledSlots.Length; i++) _filledSlots[i] = false;
+            
+            forwardButton.onClick.AddListener(() => MovePlayer(PlayerEntity.Instance.gameObject.transform.forward));
+            backwardButton.onClick.AddListener(() => MovePlayer(PlayerEntity.Instance.gameObject.transform.forward * -1));
+            leftButton.onClick.AddListener(() => MovePlayer(PlayerEntity.Instance.gameObject.transform.right * -1));
+            rightButton.onClick.AddListener(() => MovePlayer(PlayerEntity.Instance.gameObject.transform.right));
+            rotateLeftButton.onClick.AddListener(() => RotatePlayer(-90));
+            rotateRightButton.onClick.AddListener(() => RotatePlayer(90));
+        }
 
-            AddMessage("Hello and welcome, adventurer, to yet another dungeon!");
+        private static void MovePlayer(Vector3 direction)
+        {
+            if (!TurnManager.Instance.CanMove()) return;
+            PlayerEntity.Instance.movement.StartCoroutine(PlayerEntity.Instance.movement.MovePlayer(direction));
+        }
+        
+        private static void RotatePlayer(int angle)
+        {
+            if (!TurnManager.Instance.CanMove()) return;
+            PlayerEntity.Instance.movement.StartCoroutine(PlayerEntity.Instance.movement.RotatePlayer(angle));
         }
 
         /// <summary>
@@ -78,9 +96,7 @@ namespace Player
         /// </summary>
         private void Update()
         {
-            //Each frame we update how much energy/traps/gold the player has,
-            //as well as how many turns are left before they take damage from sleep loss.
-            energyText.text = PlayerEntity.Instance.health.currentHealth + "/" + PlayerEntity.Instance.health.maxHealth;
+            healthBar.fillAmount = 1.0f * PlayerEntity.Instance.health.currentHealth / PlayerEntity.Instance.health.maxHealth;
         }
 
         /// <summary>
