@@ -19,7 +19,8 @@ namespace UI
         public List<GameObject> itemPrefabs;
         public LayerMask obstacles;
         public LayerMask environmentItems;
-
+        public LayerMask itemBoxes;
+        
         private GameObject _clickedItem;
         
         /// <summary>
@@ -79,6 +80,11 @@ namespace UI
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     PickUpItem(_clickedItem);
+                } else if (itemBoxes.HasLayer(raycastHit.collider.gameObject.layer) &&
+                           Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f),
+                               Quaternion.identity, itemBoxes).Length > 0)
+                {
+                    PlayerHUD.Instance.OpenItemBox();
                 }
             }
         }

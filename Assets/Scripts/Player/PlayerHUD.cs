@@ -44,6 +44,16 @@ namespace Player
         /// The buttons in the UI to move the player
         /// </summary>
         public Button forwardButton, backwardButton, leftButton, rightButton, rotateLeftButton, rotateRightButton;
+
+        /// <summary>
+        /// The game object featuring the item box UI
+        /// </summary>
+        public GameObject itemBoxUI;
+        
+        /// <summary>
+        /// The button to close the item box
+        /// </summary>
+        public Button closeBoxButton;
         
         /// <summary>
         /// The log messages
@@ -77,6 +87,7 @@ namespace Player
             rightButton.onClick.AddListener(() => MovePlayer(PlayerEntity.Instance.gameObject.transform.right));
             rotateLeftButton.onClick.AddListener(() => RotatePlayer(-90));
             rotateRightButton.onClick.AddListener(() => RotatePlayer(90));
+            closeBoxButton.onClick.AddListener(CloseItemBox);
         }
 
         private static void MovePlayer(Vector3 direction)
@@ -110,6 +121,16 @@ namespace Player
             if (_logQueue.ToArray().Length > logMessages.Count) _logQueue.Dequeue();
             var messages = _logQueue.ToArray();
             for (var i = 0; i < messages.Length; i++) logMessages[i].text = messages[i];
+        }
+
+        public void OpenItemBox()
+        {
+            itemBoxUI.SetActive(true);
+        }
+
+        private void CloseItemBox()
+        {
+            itemBoxUI.SetActive(false);
         }
     }
 }
