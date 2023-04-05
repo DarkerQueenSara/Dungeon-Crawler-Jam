@@ -26,7 +26,7 @@ namespace UI.Items
             if (currentAmmo > 0)
             {
                 currentAmmo--;
-                Debug.Log("Bang! (ammo left)" + currentAmmo);
+                Debug.Log("Bang!");
                 //TODO shoot
             }
             else
