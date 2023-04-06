@@ -1,6 +1,8 @@
+using System.IO;
 using Audio;
+using Managers;
+using Managers.Save_System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace UI
@@ -15,7 +17,7 @@ namespace UI
         /// The start game button
         /// </summary>
         [Header("Buttons")] public Button startButton;
-
+        public Button loadButton;
         /// <summary>
         /// The tutorial button
         /// </summary>
@@ -50,11 +52,17 @@ namespace UI
         private void Start()
         {
             startButton.onClick.AddListener(StartGame);
+            if (File.Exists(GameManager.Instance.savePath)){
+                loadButton.onClick.AddListener(LoadGame);
+            } else
+            {
+                loadButton.GetComponent<Image>().color = Color.gray;
+            }
             tutorialButton.onClick.AddListener(ShowTutorial);
             backButton.onClick.AddListener(ShowTitleScreen);
             exitButton.onClick.AddListener(ExitGame);
-            _audioManager = GetComponent<AudioManager>();
-            _audioManager.Play("MenuMusic");
+            //_audioManager = GetComponent<AudioManager>();
+            //_audioManager.Play("MenuMusic");
         }
 
         /// <summary>
@@ -62,7 +70,13 @@ namespace UI
         /// </summary>
         private static void StartGame()
         {
-            SceneManager.LoadScene(1);
+            SaveSystem.DeletePlayer();
+            GameManager.Instance.LoadMainScene();
+        }
+    
+        private static void LoadGame()
+        {
+            GameManager.Instance.LoadMainScene();
         }
 
         /// <summary>

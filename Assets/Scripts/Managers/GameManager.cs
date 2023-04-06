@@ -5,6 +5,7 @@ using Items;
 using Maps;
 using Player;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Grid = Maps.Grid<Maps.GridCell<bool>>;
 
 namespace Managers
@@ -24,6 +25,7 @@ namespace Managers
         /// The instance.
         /// </value>
         public static GameManager Instance { get; private set; }
+        [HideInInspector] public string savePath;
 
         /// <summary>
         /// Awakes this instance (if none already exists).
@@ -31,9 +33,15 @@ namespace Managers
         private void Awake()
         {
             if (Instance == null)
+            {
                 Instance = this;
+                savePath = Application.persistentDataPath + "/player.resi";
+            }
             else
+            {
                 Destroy(gameObject);
+            }
+            DontDestroyOnLoad(gameObject);
         }
 
         #endregion
@@ -71,6 +79,26 @@ namespace Managers
         {
             //audioManager = GetComponent<AudioManager>();
             //audioManager.Play("Music");
+        }
+        
+        public void LoadTitleScreen()
+        {
+            SceneManager.LoadScene(0);
+        }
+    
+        public void LoadMainScene()
+        {
+            SceneManager.LoadScene(1);
+        }
+        
+        public void LoadCredits()
+        {
+            SceneManager.LoadScene(2);
+        }
+    
+        public void ReloadScene()
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
         
     }
