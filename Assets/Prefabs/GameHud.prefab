@@ -2638,7 +2638,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventoryItemPrefabs:
+  - {fileID: 5467317373689215300, guid: af6d5c7eeec3a874b84295c5dd100470, type: 3}
+  - {fileID: 5467317373689215300, guid: 8b734c20197f53144a2d2bea9af89f43, type: 3}
+  - {fileID: 5467317373689215300, guid: d0b7c0156b673b44c9ff4a7594e62281, type: 3}
+  - {fileID: 5467317373689215300, guid: ad703b573bf294447b9dc90af49c6518, type: 3}
+  - {fileID: 5467317373689215300, guid: 778688aedde4a4ec49e68ba88fac4e10, type: 3}
   - {fileID: 5467317373689215300, guid: ebba56585883b4d43b986a585a39b580, type: 3}
+  - {fileID: 5467317373689215300, guid: d5079832b0b9f0446817f61469d19af6, type: 3}
 --- !u!1 &5910500368415371706
 GameObject:
   m_ObjectHideFlags: 0

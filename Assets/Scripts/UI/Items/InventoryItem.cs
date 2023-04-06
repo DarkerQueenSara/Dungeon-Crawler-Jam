@@ -11,7 +11,7 @@ namespace UI
     {
         [Header("UI")] public Image image;
 
-        public ItemType item;
+        [HideInInspector] public ItemType item;
 
         [HideInInspector] public Transform parentAfterDrag;
 

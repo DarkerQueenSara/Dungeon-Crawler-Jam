@@ -51,7 +51,7 @@ namespace UI
             Physics.Raycast(posAhead, Vector3.down, out RaycastHit hit);
             float height = hit.distance;
             //Spawn the prefab at the right position
-            GameObject spawnedObject = Instantiate(toSpawn, posAhead + (Vector3.down * height) +  toSpawn.transform.position, Quaternion.identity);
+            GameObject spawnedObject = Instantiate(toSpawn, posAhead + (Vector3.down * height) +  toSpawn.transform.position, toSpawn.transform.rotation);
             switch (inventoryItem)
             {
                 //Adjust data of spawned object. If it can be stacked

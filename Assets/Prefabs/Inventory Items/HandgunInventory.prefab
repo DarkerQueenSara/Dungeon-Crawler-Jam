@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 5283150561210449511}
   - component: {fileID: 6775182960389406305}
   - component: {fileID: 4539302118471740167}
+  - component: {fileID: 7409477977666326349}
   - component: {fileID: 8693997797569163842}
-  - component: {fileID: 2455788521674053019}
   m_Layer: 5
-  m_Name: ShotgunAmmo
+  m_Name: HandgunInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 581011748410577721}
+  - {fileID: 690080272865363914}
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.20369065, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -99,12 +99,31 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 4
-  m_StartCorner: 2
+  m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 100, y: 100}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 0
   m_ConstraintCount: 2
+--- !u!114 &7409477977666326349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5467317373689215300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 648bc09acd2e346e8a67af723b8641ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  image: {fileID: 6775182960389406305}
+  item: 0
+  parentAfterDrag: {fileID: 0}
+  damage: 0
+  maxAmmo: 15
+  currentAmmo: 0
+  ammoText: {fileID: 5372717900608466874}
 --- !u!114 &8693997797569163842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,24 +168,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2455788521674053019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5467317373689215300}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac84d61ea1d6b914b94acadc270430e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  image: {fileID: 6775182960389406305}
-  item: 3
-  parentAfterDrag: {fileID: 0}
-  amount: 10
-  amountText: {fileID: 906387746530682602}
---- !u!1 &6436159414329280811
+--- !u!1 &9155231936108891272
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -174,9 +176,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 581011748410577721}
-  - component: {fileID: 1006099714129893784}
-  - component: {fileID: 906387746530682602}
+  - component: {fileID: 690080272865363914}
+  - component: {fileID: 751876856168978573}
+  - component: {fileID: 5372717900608466874}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -184,14 +186,14 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &581011748410577721
+--- !u!224 &690080272865363914
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436159414329280811}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 9155231936108891272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -204,21 +206,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1006099714129893784
+--- !u!222 &751876856168978573
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436159414329280811}
+  m_GameObject: {fileID: 9155231936108891272}
   m_CullTransparentMesh: 1
---- !u!114 &906387746530682602
+--- !u!114 &5372717900608466874
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6436159414329280811}
+  m_GameObject: {fileID: 9155231936108891272}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
