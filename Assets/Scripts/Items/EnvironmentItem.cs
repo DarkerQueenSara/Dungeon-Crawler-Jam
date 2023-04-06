@@ -2,7 +2,7 @@
 
 namespace Items
 {
-    public abstract class EnvironmentItem : MonoBehaviour
+    public class EnvironmentItem : MonoBehaviour
     {
         public ItemType item;
     }

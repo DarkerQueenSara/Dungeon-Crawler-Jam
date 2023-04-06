@@ -51,13 +51,24 @@ namespace UI
             Physics.Raycast(posAhead, Vector3.down, out RaycastHit hit);
             float height = hit.distance;
             //Spawn the prefab at the right position
-            GameObject spawnedObject = Instantiate(toSpawn, posAhead + (Vector3.down * height), Quaternion.identity);
-            //Adjust data of spawned object. If it can be stacked
-            if (inventoryItem is InventoryStackable inventoryStackable)
-            { 
-               EnvironmentStackable spawnedItem = spawnedObject.GetComponent<EnvironmentStackable>();
-               spawnedItem.amount = inventoryStackable.amount;
+            GameObject spawnedObject = Instantiate(toSpawn, posAhead + (Vector3.down * height) +  toSpawn.transform.position, Quaternion.identity);
+            switch (inventoryItem)
+            {
+                //Adjust data of spawned object. If it can be stacked
+                case InventoryStackable inventoryStackable:
+                {
+                    EnvironmentStackable spawnedItem = spawnedObject.GetComponent<EnvironmentStackable>();
+                    spawnedItem.amount = inventoryStackable.amount;
+                    break;
+                }
+                case InventoryGun inventoryGun:
+                {
+                    EnvironmentGun spawnedItem = spawnedObject.GetComponent<EnvironmentGun>();
+                    spawnedItem.currentAmmo = inventoryGun.currentAmmo;
+                    break;
+                }
             }
+
             //Destroy the item in the UI
             Destroy(inventoryItem.gameObject);
         }
