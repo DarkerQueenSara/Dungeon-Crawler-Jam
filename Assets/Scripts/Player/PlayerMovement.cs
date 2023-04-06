@@ -76,17 +76,17 @@ namespace Player
                 Physics.OverlapBox(_targetPos, new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, obstacles);
             if (col.Length > 0)
             {
-                IsMoving = false;
 
                 foreach (Collider t in col)
                 {
                     if (direction == transform.forward && doors.HasLayer(t.gameObject.layer))
                     {
+                        LockMovement();
                         t.gameObject.GetComponent<Door>().TeleportPlayer();
                         yield break;
                     }
                 }
-                
+                IsMoving = false;
                 yield break;
             }
 
@@ -145,11 +145,11 @@ namespace Player
 
         public void LockMovement()
         {
-            IsMoving = false;
+            IsMoving = true;
         }
         public void UnlockMovement()
         {
-            IsMoving = true;
+            IsMoving = false;
         }
     }
 }
