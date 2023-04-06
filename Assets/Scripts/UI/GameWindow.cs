@@ -2,6 +2,7 @@
 using Extensions;
 using Items;
 using Player;
+using Puzzles;
 using UI.Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -79,7 +80,7 @@ namespace UI
         public void OnPointerClick(PointerEventData eventData)
         {
             Vector2 localPoint = Vector2.zero;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(rawImageRectTrans, eventData.position, null, out localPoint);
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rawImageRectTrans, eventData.position, Camera.main, out localPoint);
             Vector2 normalizedPoint = Rect.PointToNormalized(rawImageRectTrans.rect, localPoint);
             Ray renderRay = renderToTextureCamera.ViewportPointToRay(normalizedPoint);
             Debug.DrawLine(renderRay.origin, renderRay.direction, Color.black, 5f);

@@ -67,5 +67,10 @@ namespace Player
         {
             return transform.position + transform.forward;
         }
+
+        public void TeleportPlayer()
+        {
+            transform.position += transform.forward * 2.0f;
+        }
     }
 }

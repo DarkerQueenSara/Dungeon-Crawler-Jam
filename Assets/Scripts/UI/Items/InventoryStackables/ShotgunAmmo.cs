@@ -1,9 +1,6 @@
-using System;
-using UI;
 using Items;
-using UI.Items.InventoryGuns;
 
-namespace UI.Items
+namespace UI.Items.InventoryStackables
 {
     public class ShotgunAmmo: InventoryStackable
     {

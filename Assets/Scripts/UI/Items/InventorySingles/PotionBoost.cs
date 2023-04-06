@@ -1,9 +1,6 @@
-using System;
-using UI;
 using Items;
-using Player;
 
-namespace UI.Items
+namespace UI.Items.InventorySingles
 {
     public class PotionBoost: InventoryItem
     {

@@ -49,6 +49,10 @@ namespace Player
                 StartCoroutine(RotatePlayer(-90));
             if (Input.GetKeyDown(KeyCode.E))
                 StartCoroutine(RotatePlayer(90));
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                PlayerEntity.Instance.TeleportPlayer();
+            }
         }
 
         /// <summary>
@@ -60,7 +64,7 @@ namespace Player
         {
             IsMoving = true;
 
-            var elapsedTime = 0.0f;
+            float elapsedTime = 0.0f;
 
             _origPos = transform.position;
             _targetPos = _origPos + direction;

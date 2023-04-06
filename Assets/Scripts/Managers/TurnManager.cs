@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enemies;
 using Items;
 using Player;
+using Puzzles;
 using UnityEngine;
 
 namespace Managers

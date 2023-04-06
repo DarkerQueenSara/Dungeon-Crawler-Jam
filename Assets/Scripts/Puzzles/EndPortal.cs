@@ -1,10 +1,8 @@
 using Audio;
 using Extensions;
-using Managers;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-namespace Items
+namespace Puzzles
 {
     /// <summary>
     /// The portal that ends the level

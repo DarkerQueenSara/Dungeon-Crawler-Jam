@@ -1,4 +1,4 @@
-﻿namespace UI.Items
+﻿namespace UI.Items.InventorySingles
 {
     public class RedBook : InventoryItem
     {
