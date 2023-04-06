@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using Extensions;
 using Items;
 using Player;
@@ -20,6 +18,7 @@ namespace UI
         public LayerMask obstacles;
         public LayerMask environmentItems;
         public LayerMask itemBoxes;
+        public LayerMask doors;
         
         private GameObject _clickedItem;
         
@@ -86,6 +85,7 @@ namespace UI
             Debug.DrawLine(renderRay.origin, renderRay.direction, Color.black, 5f);
             if (Physics.Raycast(renderRay, out var raycastHit))
             {
+                Debug.Log(raycastHit.collider.gameObject);
                 if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer) && 
                     Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, environmentItems).Length > 0)
                 {
@@ -96,6 +96,12 @@ namespace UI
                                Quaternion.identity, itemBoxes).Length > 0)
                 {
                     PlayerHUD.Instance.OpenItemBox();
+                } else if (doors.HasLayer(raycastHit.collider.gameObject.layer) &&
+                           Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f),
+                               Quaternion.identity, doors).Length > 0)
+                {
+                    _clickedItem = raycastHit.collider.gameObject;
+                    _clickedItem.GetComponent<Door>().TeleportPlayer();
                 }
             }
         }
