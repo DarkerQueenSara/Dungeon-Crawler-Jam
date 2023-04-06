@@ -119,7 +119,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 1152
+  doors:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!136 &7990995516357725601
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Player;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,7 +33,7 @@ namespace Puzzles
                 _fadeImage.color = new Color(0, 0, 0, i);
                 yield return null;
             }
-            //TODO return control to player
+            PlayerEntity.Instance.movement.UnlockMovement();
             gameObject.SetActive(false);
         }
     }

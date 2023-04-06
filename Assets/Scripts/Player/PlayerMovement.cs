@@ -1,5 +1,7 @@
 using System.Collections;
+using Extensions;
 using Managers;
+using Puzzles;
 using UnityEngine;
 
 namespace Player
@@ -14,6 +16,10 @@ namespace Player
         /// The layers of the obstacles
         /// </summary>
         public LayerMask obstacles;
+        /// <summary>
+        /// The layers of the doors
+        /// </summary>
+        public LayerMask doors;
         /// <summary>
         /// The original and target positions
         /// </summary>
@@ -49,10 +55,6 @@ namespace Player
                 StartCoroutine(RotatePlayer(-90));
             if (Input.GetKeyDown(KeyCode.E))
                 StartCoroutine(RotatePlayer(90));
-            if (Input.GetKeyDown(KeyCode.T))
-            {
-                PlayerEntity.Instance.TeleportPlayer();
-            }
         }
 
         /// <summary>
@@ -76,6 +78,15 @@ namespace Player
             {
                 IsMoving = false;
 
+                foreach (Collider t in col)
+                {
+                    if (direction == transform.forward && doors.HasLayer(t.gameObject.layer))
+                    {
+                        t.gameObject.GetComponent<Door>().TeleportPlayer();
+                        yield break;
+                    }
+                }
+                
                 yield break;
             }
 
@@ -130,6 +141,15 @@ namespace Player
             
             transform.rotation = Quaternion.Euler(_targetRot);
             IsMoving = false;
+        }
+
+        public void LockMovement()
+        {
+            IsMoving = false;
+        }
+        public void UnlockMovement()
+        {
+            IsMoving = true;
         }
     }
 }
