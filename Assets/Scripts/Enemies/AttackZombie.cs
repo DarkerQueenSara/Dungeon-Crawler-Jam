@@ -19,6 +19,8 @@ namespace Enemies
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
         {
+            transform.position = transform.root.position;
+            InRangeOfAttack(playerPos);
             if (!isAttackRange)
             {
                 return chase;
@@ -33,7 +35,7 @@ namespace Enemies
             foreach (var direction in fourDirections)
             {
                 if (Math.Abs((transform.position + direction).x - playerPos.x) <= 0.1f &&
-                    Math.Abs((transform.position + direction).y - playerPos.y) <= 0.1f)
+                    Math.Abs((transform.position + direction).z - playerPos.z) <= 0.1f)
                 {
                     isAttackRange = true;
                     return;

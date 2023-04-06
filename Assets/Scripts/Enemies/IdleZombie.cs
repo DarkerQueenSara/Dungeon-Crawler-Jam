@@ -23,6 +23,7 @@ namespace Enemies
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
         {
+            transform.position = transform.root.position;
             DetectPlayer();
             if (isInRange)
             {
