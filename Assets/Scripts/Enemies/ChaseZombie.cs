@@ -32,8 +32,6 @@ namespace Enemies
         /// <value>
         ///   <c>true</c> if this instance is moving; otherwise, <c>false</c>.
         /// </value>
-        public bool IsMoving { get; private set; }
-        
         public bool isAttackRange = false;
 
         public bool outOfChase = false;
@@ -44,14 +42,20 @@ namespace Enemies
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
         {
+            transform.position = transform.root.position;
+            isAttackRange = false;
+            outOfChase = false;
+            Debug.Log("The print works");
             Move(playerPos);
             if (isAttackRange)
             {
+                Debug.Log("Got to AttackRange");
                 return attack;
             }
 
             else if (outOfChase)
             {
+                Debug.Log("OutOfChase");
                 return idle;
             }
 
@@ -77,7 +81,7 @@ namespace Enemies
         public void Move(Vector3 playerPos)
         {
             //If the gremlin is already moving, return
-            if (IsMoving) return;
+            if (isActing) return;
             
             if (!CheckIfInRange(playerPos))
             {
@@ -91,25 +95,27 @@ namespace Enemies
             var possibleMoves = new List<Vector3>();
 
             foreach (var direction in fourDirections)
+            {
                 if (Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
-                    transform.localRotation, obstacles) == null)
+                    transform.localRotation, obstacles).Length == 0)
                 {
                     //if player is directly adjacent to gremlin, a.k.a, didn't move
                     if (Math.Abs((transform.position + direction).x - playerPos.x) <= 0.1f &&
-                        Math.Abs((transform.position + direction).y - playerPos.y) <= 0.1f)
+                        Math.Abs((transform.position + direction).z - playerPos.z) <= 0.1f)
                     {
-                        StartCoroutine(MoveZombie(Vector3.zero));
+                        Debug.Log("Attack moves");
                         isAttackRange = true;
                         return;
                     }
-
+                    
                     possibleMoves.Add(direction);
                 }
+            }
 
             //Shuffle the list, so if there are ties, it's not just the same direction all the time
             for (var i = 0; i < possibleMoves.Count; i++)
             {
-                Vector2 temp = possibleMoves[i];
+                Vector3 temp = possibleMoves[i];
                 var randomIndex = Random.Range(i, possibleMoves.Count);
                 possibleMoves[i] = possibleMoves[randomIndex];
                 possibleMoves[randomIndex] = temp;
@@ -117,14 +123,13 @@ namespace Enemies
 
             //Sort the list ascendingly or descendingly, if they are closing the distance, or increasing the distance
             //from the player, respectively
-            /*
-            if (chaser)
-                possibleMoves = possibleMoves.OrderBy(x => GetDistanceInTiles(transform.position + x, playerPos))
+            
+            possibleMoves = possibleMoves.OrderBy(x => GetDistanceInTiles(transform.position + x, playerPos))
                     .ToList();
-            else
-                possibleMoves = possibleMoves
-                    .OrderByDescending(x => GetDistanceInTiles(transform.position + x, playerPos)).ToList();
-            */
+            /* else
+                 possibleMoves = possibleMoves
+                     .OrderByDescending(x => GetDistanceInTiles(transform.position + x, playerPos)).ToList();
+             */
             //Start moving, picking the first item on the list
             StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero) : MoveZombie(possibleMoves[0]));
         }
@@ -137,7 +142,7 @@ namespace Enemies
         /// <returns></returns>
         private IEnumerator MoveZombie(Vector3 direction)
         {
-            IsMoving = true;
+            isActing = true;
 
             var elapsedTime = 0.0f;
 
@@ -150,18 +155,19 @@ namespace Enemies
                 transform.position =
                     Vector3.Lerp(_origPos, _targetPos, elapsedTime / TurnManager.Instance.unitTimeToMove);
                 elapsedTime += Time.deltaTime;
+                transform.root.position = transform.position;
                 yield return null;
             }
-
             transform.position = _targetPos;
+            transform.root.position = transform.position;
 
-            IsMoving = false;
+            isActing = false;
             yield return null;
         }
 
         private static int GetDistanceInTiles(Vector3 pos1, Vector3 pos2)
         {
-            return Mathf.RoundToInt(Math.Abs(pos1.x - pos2.x) + Math.Abs(pos1.y - pos2.y));
+            return Mathf.RoundToInt(Math.Abs(pos1.x - pos2.x) + Math.Abs(pos1.z - pos2.z));
         }
 
 

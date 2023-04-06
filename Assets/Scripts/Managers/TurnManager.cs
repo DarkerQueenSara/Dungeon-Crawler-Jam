@@ -50,7 +50,7 @@ namespace Managers
         /// <summary>
         /// The enemies in map
         /// </summary>
-        private List<Gremlin> _enemiesInMap;
+        public List<StateMachine> _enemiesInMap;
         
         /// <summary>
         /// Gets a value indicating whether [processing turn].
@@ -74,16 +74,16 @@ namespace Managers
         public void Start()
         {
             //Create the lists if they haven't been created yet 
-            _enemiesInMap ??= new List<Gremlin>();
+            _enemiesInMap ??= new List<StateMachine>();
         }
 
         /// <summary>
         /// Adds a zombie to the manager.
         /// </summary>
         /// <param name="g">The zombie.</param>
-        public void AddZombie(Gremlin g)
+        public void AddZombie(StateMachine g)
         {
-            _enemiesInMap ??= new List<Gremlin>();
+            _enemiesInMap ??= new List<StateMachine>();
             _enemiesInMap.Add(g);
         }
         
@@ -115,7 +115,7 @@ namespace Managers
         private IEnumerator TurnCoroutine(Vector3 playerPos)
         {
             //Move all the zombies
-            foreach (var g in _enemiesInMap) g.Move(playerPos);
+            foreach (var z in _enemiesInMap) z.RunStateMachine(playerPos);
 
             //Wait until they have finished moving
             yield return new WaitForSeconds(unitTimeToMove);
@@ -145,8 +145,8 @@ namespace Managers
         /// </returns>
         private bool EntitiesAreMoving()
         {
-            foreach (var g in _enemiesInMap)
-                if (g.IsMoving)
+            foreach (var z in _enemiesInMap)
+                if (z.currentState.isActing)
                     return true;
 
             return PlayerEntity.Instance.movement.IsMoving;
