@@ -34,11 +34,10 @@ namespace UI.Items
                 if (Physics.Raycast(PlayerEntity.Instance.transform.position, PlayerEntity.Instance.transform.forward, out hit, range))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
-                    {
-                        // Deal damage to the enemy
                         hit.collider.GetComponent<ZombieMelee>().DealDamageSelf(damage);
-                        Debug.Log("Hit");
-                    }
+                    
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("DestructibleWall"))
+                        hit.collider.GetComponent<DestructibleWall>().RecieveDamage();
                 }
             }
             else

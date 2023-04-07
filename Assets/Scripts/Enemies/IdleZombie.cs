@@ -20,6 +20,8 @@ namespace Enemies
 
         public bool isInRange = false;
 
+        public StateMachine manager;
+
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
         {
@@ -27,6 +29,7 @@ namespace Enemies
             DetectPlayer();
             if (isInRange)
             {
+                manager.stateID = 1;
                 return chaseZombie;
             }
 

@@ -16,25 +16,23 @@ namespace Enemies
     {
         public int health;
         public int damage;
+        private StateMachine manager;
 
-        /*private void Awake()
+        private void Start()
         {
-            state.positionCurrentState =  transform.position;
+            manager = GetComponent<StateMachine>();
         }
 
-        private void Update()
+        public void DealDamageSelf(int damageNew)
         {
-            transform.position = state.positionCurrentState;
-        }*/
-
-        public void DealDamageSelf(int damage)
-        {
-            health += -damage;
-
+            health += -damageNew;
+            manager.animator.SetBool("isDamaged", true);
+            
             if (health <= 0)
             {
                 Destroy(gameObject);
             }
+            manager.animator.SetBool("isDamaged", true);
         }
     }
 }
