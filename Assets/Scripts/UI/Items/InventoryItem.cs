@@ -1,4 +1,5 @@
-﻿using Items;
+﻿using System;
+using Items;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,8 +14,15 @@ namespace UI.Items
 
         [HideInInspector] public Transform parentAfterDrag;
 
+        private Canvas _myCanvas;
+        
+
         public void OnBeginDrag(PointerEventData eventData)
         {
+            if (_myCanvas == null)
+            {
+                _myCanvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+            }
             image.raycastTarget = false;
             parentAfterDrag = transform.parent;
             transform.SetParent(transform.root);
@@ -23,14 +31,19 @@ namespace UI.Items
 
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position = Input.mousePosition;
+            Vector2 pos;
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(_myCanvas.transform as RectTransform, Input.mousePosition, _myCanvas.worldCamera, out pos);
+            transform.position = _myCanvas.transform.TransformPoint(pos);
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
             image.raycastTarget = true;
             transform.SetParent(parentAfterDrag);
+            transform.localPosition.Set(transform.position.x, transform.position.y, 0);
         }
+        
+        
         
         public void OnPointerClick(PointerEventData eventData)
         {
