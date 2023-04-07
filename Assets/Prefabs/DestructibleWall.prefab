@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 372730395685365949}
   - component: {fileID: 2203279150588667933}
   - component: {fileID: 6926687340248158725}
-  m_Layer: 14
+  m_Layer: 16
   m_Name: DestructibleWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &333772625730268348
 MeshFilter:
