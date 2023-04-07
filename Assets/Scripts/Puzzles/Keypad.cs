@@ -1,14 +1,32 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 namespace Puzzles
 {
     public class Keypad :MonoBehaviour
     {
         public KeypadUI graphics;
-        public LockedDoor door;
+        public List<LockedDoor> door;
 
         [HideInInspector] public bool solved;
-        
+
+
+        private void Update()
+        {
+            if (!solved)
+            {
+                if (!(door[0].locked && door[1].locked))
+                {
+                    solved = true;
+                }
+                else
+                {
+                    solved = false;
+                }
+            }
+        }
+
         public void StartPuzzle()
         {
             if (solved) return;
@@ -17,7 +35,8 @@ namespace Puzzles
 
         public void EndPuzzle()
         {
-            door.locked = false;
+            door[0].locked = false;
+            door[1].locked = false;
             Destroy(graphics.gameObject);
         }
     }

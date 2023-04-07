@@ -120,7 +120,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   obstacles:
     serializedVersion: 2
-    m_Bits: 1152
+    m_Bits: 66688
   doors:
     serializedVersion: 2
     m_Bits: 1024
