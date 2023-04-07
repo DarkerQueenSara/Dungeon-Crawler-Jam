@@ -51,13 +51,19 @@ namespace UI
             }
             else
             {
+                              
+                
                 GameObject toSpawn = GetRightItem(clickedItem.item);
                 if (toSpawn == null)
                 {
                     Debug.Log("You forgot the prefab...");
                 }
 
-                Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform);
+                GameObject spawnedItem = Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform); 
+                if (clickedItem is EnvironmentGun clickedItemGun)
+                {
+                    spawnedItem.GetComponent<InventoryGun>().currentAmmo = clickedItemGun.currentAmmo;
+                } 
             }
 
             Destroy(environmentItem);
