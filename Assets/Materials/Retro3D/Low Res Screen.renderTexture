@@ -18,8 +18,8 @@ RenderTexture:
   m_Height: 224
   m_AntiAliasing: 1
   m_MipCount: -1
-  m_DepthStencilFormat: 92
-  m_ColorFormat: 69
+  m_DepthStencilFormat: 94
+  m_ColorFormat: 59
   m_MipMap: 0
   m_GenerateMips: 1
   m_SRGB: 0
