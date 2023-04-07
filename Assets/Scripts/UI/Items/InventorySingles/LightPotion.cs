@@ -1,11 +1,16 @@
 using Items;
 using Player;
+using Unity.VisualScripting;
+using UnityEngine;
+
 
 namespace UI.Items.InventorySingles
 {
     public class LightPotion: InventoryItem
     {
         public int lifeToRecover;
+        
+        public GameObject combinedPrefab;
 
         private void Start()
         {
@@ -16,7 +21,7 @@ namespace UI.Items.InventorySingles
         public override void UseItem()
         {
             PlayerEntity.Instance.health.RestoreHealth(lifeToRecover);
-            Destroy(this);
+            Destroy(gameObject);
 
         }
 
@@ -24,8 +29,12 @@ namespace UI.Items.InventorySingles
         {
             if(item.item == ItemType.PotionBoost)
             {
-                this.item = ItemType.StrongPotion;
-                Destroy(item);
+                GameObject newObject = Instantiate(combinedPrefab, transform.position, Quaternion.identity);
+                newObject.transform.SetParent(transform.parent);
+                newObject.transform.localScale = Vector3.one;
+                
+                Destroy(item.gameObject);
+                Destroy(gameObject);
             }  
             
         }
