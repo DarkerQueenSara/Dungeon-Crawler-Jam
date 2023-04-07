@@ -142,11 +142,21 @@ namespace Managers
             {
                 if (PlayerEntity.Instance.transform.position.y > 5)
                 {
-                    PlayerEntity.Instance.transform.position += Vector3.down * 10;
+                    PlayerEntity.Instance.transform.position += Vector3.down * 10; // go to world 1
+                    //Check world 2 ambience sound
+                    if(audioManager.IsPlaying("world02-default-ambience"))
+                        audioManager.Stop("world02-default-ambience");
+                    //Play world 1 ambience sound
+                    audioManager.Play("world01-default-ambience");
                 }
                 else
                 {
-                    PlayerEntity.Instance.transform.position += Vector3.up * 10;
+                    PlayerEntity.Instance.transform.position += Vector3.up * 10; // go to world 2
+                    //Check world 1 ambience sound
+                    if(audioManager.IsPlaying("world01-default-ambience"))
+                        audioManager.Stop("world01-default-ambience");
+                    //Play world 2 ambience sound
+                    audioManager.Play("world02-default-ambience");
                 }
 
                 if (p.invisible)
