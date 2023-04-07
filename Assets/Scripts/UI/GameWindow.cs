@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Extensions;
 using Items;
+using Managers.Save_System;
 using Player;
 using Puzzles;
 using UI.Items;
@@ -21,6 +22,7 @@ namespace UI
         public LayerMask itemBoxes;
         public LayerMask doors;
         public LayerMask keypads;
+        public LayerMask savePoint;
         
         private GameObject _clickedItem;
         
@@ -111,6 +113,12 @@ namespace UI
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     _clickedItem.GetComponent<Keypad>().StartPuzzle();
+                }
+                else if (savePoint.HasLayer(raycastHit.collider.gameObject.layer) &&
+                         Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
+                             Quaternion.identity, savePoint).Length > 0)
+                {
+                    SaveSystem.SavePlayer(PlayerEntity.Instance);
                 }
             }
         }

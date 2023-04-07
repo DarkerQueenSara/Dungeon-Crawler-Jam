@@ -116,7 +116,7 @@ namespace Player
         /// <param name="newMessage">The new message.</param>
         public void AddMessage(string newMessage)
         {
-            _logQueue.Enqueue("Turn " + TurnManager.Instance.CurrentTurn + ": " + newMessage);
+            _logQueue.Enqueue(newMessage);
             //If the number of messages as reached its maximum, we remove the oldest from the queue.
             if (_logQueue.ToArray().Length > logMessages.Count) _logQueue.Dequeue();
             var messages = _logQueue.ToArray();
