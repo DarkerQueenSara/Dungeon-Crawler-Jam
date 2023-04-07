@@ -10,13 +10,12 @@ namespace UI.Items
     {
         [Header("UI")] public Image image;
 
-        [HideInInspector] public ItemType item;
+        public ItemType item;
 
         [HideInInspector] public Transform parentAfterDrag;
 
         private Canvas _myCanvas;
         
-
         public void OnBeginDrag(PointerEventData eventData)
         {
             if (_myCanvas == null)
@@ -31,7 +30,7 @@ namespace UI.Items
 
         public void OnDrag(PointerEventData eventData)
         {
-            Vector2 pos;
+            Vector2 pos = Vector2.zero;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(_myCanvas.transform as RectTransform, Input.mousePosition, _myCanvas.worldCamera, out pos);
             transform.position = _myCanvas.transform.TransformPoint(pos);
         }
@@ -42,9 +41,7 @@ namespace UI.Items
             transform.SetParent(parentAfterDrag);
             transform.localPosition.Set(transform.position.x, transform.position.y, 0);
         }
-        
-        
-        
+
         public void OnPointerClick(PointerEventData eventData)
         {
             if (eventData.button == PointerEventData.InputButton.Right)

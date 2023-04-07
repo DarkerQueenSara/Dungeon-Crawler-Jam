@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Managers;
+using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -22,6 +23,8 @@ namespace Enemies
         public LayerMask obstacleDoor;
         
         public float detectionRange;
+        
+        public StateMachine manager;
 
         /// <summary>
         /// The original position in each turn
@@ -52,12 +55,14 @@ namespace Enemies
             if (isAttackRange)
             {
                 Debug.Log("Got to AttackRange");
+                manager.stateID = 2;
                 return attack;
             }
 
             else if (outOfChase)
             {
                 Debug.Log("OutOfChase");
+                manager.stateID = 0;
                 return idle;
             }
 
@@ -146,6 +151,10 @@ namespace Enemies
         private IEnumerator MoveZombie(Vector3 direction)
         {
             isActing = true;
+            
+            transform.LookAt(PlayerEntity.Instance.transform);
+            transform.root.LookAt(PlayerEntity.Instance.transform);
+
 
             var elapsedTime = 0.0f;
 

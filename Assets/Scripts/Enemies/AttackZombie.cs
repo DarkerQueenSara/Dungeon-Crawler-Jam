@@ -14,9 +14,10 @@ namespace Enemies
     public class AttackZombie : BaseState
     {
         private bool isAttackRange = true;
-        public PlayerEntity player;
         public ChaseZombie  chase;
         public ZombieMelee owner;
+
+        public StateMachine manager;
 
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
@@ -25,11 +26,12 @@ namespace Enemies
             InRangeOfAttack(playerPos);
             if (!isAttackRange)
             {
+                manager.stateID = 1;
                 return chase;
             }
 
             AttackThePlayer();
-
+            manager.stateID = 2;
             return this;
         }
 
@@ -51,7 +53,7 @@ namespace Enemies
 
         private void AttackThePlayer()
         {
-            player.health.DealDamage(owner.damage);
+            PlayerEntity.Instance.health.DealDamage(owner.damage);
             return;
         }
 
