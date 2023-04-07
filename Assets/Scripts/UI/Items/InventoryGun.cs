@@ -1,4 +1,5 @@
 ﻿using Enemies;
+using Player;
 using TMPro;
 using UnityEngine;
 
@@ -28,11 +29,11 @@ namespace UI.Items
             if (currentAmmo > 0)
             {
                 currentAmmo--;
-                Debug.Log("Bang!");
+
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, range))
+                if (Physics.Raycast(PlayerEntity.Instance.transform.position, PlayerEntity.Instance.transform.forward, out hit, range))
                 {
-                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Zombie"))
                     {
                         // Deal damage to the enemy
                         hit.collider.GetComponent<ZombieMelee>().DealDamageSelf(damage);
