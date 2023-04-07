@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,16 @@ namespace Puzzles
         private void Start()
         {
             _lastFourInputs = new Queue<int>();
-            for (int i = 0; i < numberButtons.Count; i++)
-            {
-                numberButtons[i].onClick.AddListener(() => AddNumber(i + 1));
-            }
+            numberButtons[0].onClick.AddListener(() => AddNumber(1));
+            numberButtons[1].onClick.AddListener(() => AddNumber(2));
+            numberButtons[2].onClick.AddListener(() => AddNumber(3));
+            numberButtons[3].onClick.AddListener(() => AddNumber(4));
+            numberButtons[4].onClick.AddListener(() => AddNumber(5));
+            numberButtons[5].onClick.AddListener(() => AddNumber(6));
+            numberButtons[6].onClick.AddListener(() => AddNumber(7));
+            numberButtons[7].onClick.AddListener(() => AddNumber(8));
+            numberButtons[8].onClick.AddListener(() => AddNumber(9));
+
             closeButton.onClick.AddListener(CloseWindow);
         }
 
@@ -33,10 +40,14 @@ namespace Puzzles
                 _lastFourInputs.Dequeue();
             }
 
-            if (_lastFourInputs.ToArray() == solution)
+            if (_lastFourInputs.Count != 4) return;
+       
+            int[] inputs = _lastFourInputs.ToArray();
+            for (int i = 0; i < inputs.Length; i++)
             {
-                keypad.EndPuzzle();
+                if (inputs[i] != solution[i]) return;
             }
+            keypad.EndPuzzle();
         }
 
         private void CloseWindow()
