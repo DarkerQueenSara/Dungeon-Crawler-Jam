@@ -94,8 +94,9 @@ namespace Player
             //not after the player moves
             TurnManager.Instance.ProcessTurn(_targetPos);
 
-            //PlayerEntity.Instance.audioManager.Play("Moving");
-
+            //play footsteps sound
+            PlayerEntity.Instance.audioManager.Play("footsteps");
+            
             //Using a coroutine, we move the player without teleporting them.
             while (elapsedTime < TurnManager.Instance.unitTimeToMove)
             {

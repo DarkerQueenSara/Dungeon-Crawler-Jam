@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Audio;
 using System.Linq;
 using Enemies;
 using Items;
@@ -46,6 +47,12 @@ namespace Managers
         /// <summary>
         /// The enemies in map
         /// </summary>
+        
+        /// <summary>
+        /// The AudioManager
+        /// </summary>
+        [HideInInspector] public AudioManager audioManager;
+
         public List<StateMachine> _enemiesInMap;
         
         /// <summary>
@@ -81,6 +88,9 @@ namespace Managers
         {
             //Create the lists if they haven't been created yet 
             _enemiesInMap ??= new List<StateMachine>();
+            audioManager = GetComponent<AudioManager>();
+            //Start ambience sound in World 1
+            audioManager.Play("world01-default-ambience");
         }
 
         /// <summary>

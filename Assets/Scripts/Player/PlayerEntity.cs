@@ -60,7 +60,7 @@ namespace Player
             health = GetComponent<PlayerHealth>();
             movement = GetComponent<PlayerMovement>();
             //animator = GetComponent<Animator>();
-            //audioManager = GetComponent<AudioManager>();
+            audioManager = GetComponent<AudioManager>();
         }
 
         public Vector3 GetPositionAhead()
