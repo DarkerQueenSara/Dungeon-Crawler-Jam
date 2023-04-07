@@ -23,6 +23,8 @@ namespace UI
         public LayerMask doors;
         public LayerMask keypads;
         public LayerMask savePoint;
+        public LayerMask bookshelf;
+        public LayerMask lever;
         
         private GameObject _clickedItem;
         
@@ -119,6 +121,12 @@ namespace UI
                              Quaternion.identity, savePoint).Length > 0)
                 {
                     SaveSystem.SavePlayer(PlayerEntity.Instance);
+                }
+                else if (bookshelf.HasLayer(raycastHit.collider.gameObject.layer) &&
+                         Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
+                             Quaternion.identity, bookshelf).Length > 0)
+                {
+                    
                 }
             }
         }

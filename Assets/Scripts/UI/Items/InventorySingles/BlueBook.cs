@@ -1,17 +1,17 @@
-﻿using Items;
+using Items;
 using Player;
 using Puzzles;
 using UnityEngine;
 
 namespace UI.Items.InventorySingles
 {
-    public class RedBook : InventoryItem
+    public class GreenBook : InventoryItem
     {
         public LayerMask bookshelf;
 
         public void Start()
         {
-            item = ItemType.RedBook;
+            item = ItemType.BlueBook;
         }
 
         public override void UseItem()
@@ -19,7 +19,7 @@ namespace UI.Items.InventorySingles
             if (Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
                     Quaternion.identity, bookshelf).Length > 0)
             {
-                Bookshelf.Instance.redBook = true;
+                Bookshelf.Instance.blueBook = true;
             }
         }
 

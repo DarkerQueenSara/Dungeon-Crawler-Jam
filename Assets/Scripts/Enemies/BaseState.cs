@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,7 +11,7 @@ namespace Enemies
     {
         public bool isActing = false;
         public abstract BaseState RunState(Vector3 playerPos);
-
+        
 
 
     }
