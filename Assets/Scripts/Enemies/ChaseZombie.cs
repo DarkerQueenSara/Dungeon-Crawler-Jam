@@ -111,7 +111,6 @@ namespace Enemies
                     if (Math.Abs((transform.position + direction).x - playerPos.x) <= 0.1f &&
                         Math.Abs((transform.position + direction).z - playerPos.z) <= 0.1f)
                     {
-                        Debug.Log("Attack moves");
                         isAttackRange = true;
                         return;
                     }
@@ -139,7 +138,7 @@ namespace Enemies
                      .OrderByDescending(x => GetDistanceInTiles(transform.position + x, playerPos)).ToList();
              */
             //Start moving, picking the first item on the list
-            StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero) : MoveZombie(possibleMoves[0]));
+            StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero, playerPos) : MoveZombie(possibleMoves[0],playerPos));
         }
 
 
@@ -148,12 +147,15 @@ namespace Enemies
         /// </summary>
         /// <param name="direction">The direction.</param>
         /// <returns></returns>
-        private IEnumerator MoveZombie(Vector3 direction)
+        private IEnumerator MoveZombie(Vector3 direction, Vector3 playerPos)
         {
             isActing = true;
-            
-            transform.LookAt(PlayerEntity.Instance.transform);
-            transform.root.LookAt(PlayerEntity.Instance.transform);
+            if (direction != Vector3.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
+                Vector3.RotateTowards(transform);
+                transform.root.Rotate(PlayerEntity.Instance.transform);
+            }
 
 
             var elapsedTime = 0.0f;
