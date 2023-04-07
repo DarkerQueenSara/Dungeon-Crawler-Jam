@@ -26,11 +26,18 @@ namespace Puzzles
         public LayerMask player;
 
         public bool invisible;
-        
+
+        private void Start()
+        {
+            audioManager = GetComponent<AudioManager>();
+        }
+
         public void OnTriggerEnter(Collider other)
         {
             if (player.HasLayer(other.gameObject.layer))
             {
+                //Play enter portal sound
+                audioManager.Play("enter-portal");
                 hasPlayer = true;
             }
         }

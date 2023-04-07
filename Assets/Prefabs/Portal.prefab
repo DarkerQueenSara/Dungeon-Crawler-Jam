@@ -129,6 +129,7 @@ GameObject:
   - component: {fileID: 7750684062363702261}
   - component: {fileID: 574096593931388611}
   - component: {fileID: 8634529479398237371}
+  - component: {fileID: -8786385686437984128}
   m_Layer: 0
   m_Name: Portal
   m_TagString: Untagged
@@ -191,6 +192,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   invisible: 0
+--- !u!114 &-8786385686437984128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3173122718989547142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f791d31bbabdb6840a27c4bbf99f9cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: enter-portal
+    clip: {fileID: 8300000, guid: 1f15cd985408c7540abcad090d794d32, type: 3}
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &7043816254800549813
 GameObject:
   m_ObjectHideFlags: 0
