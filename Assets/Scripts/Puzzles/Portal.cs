@@ -15,7 +15,7 @@ namespace Puzzles
         /// <summary>
         /// If the player has stepped into the portal
         /// </summary>
-        [HideInInspector] public bool hasPlayer;
+        public bool hasPlayer;
         /// <summary>
         /// The AudioManager
         /// </summary>
@@ -26,44 +26,22 @@ namespace Puzzles
         public LayerMask player;
 
         public bool invisible;
-
-        /// <summary>
-        /// Starts this instance.
-        /// </summary>
-        private void Start()
+        
+        public void OnTriggerEnter(Collider other)
         {
-            //audioManager = GetComponent<AudioManager>();
-            //audioManager.Play("Portal");
+            if (player.HasLayer(other.gameObject.layer))
+            {
+                hasPlayer = true;
+            }
         }
 
-        /// <summary>
-        /// Called when [trigger enter2 d].
-        /// </summary>
-        /// <param name="col">The col.</param>
-        public void OnTriggerStay2D(Collider2D col)
+        public void OnTriggerExit(Collider other)
         {
-            Vector3 playerPos = PlayerEntity.Instance.gameObject.transform.position;
             //If the object that stepped into the portal is in the player layer, i.e., is the player
-            if (player.HasLayer(col.gameObject.layer) && 
-                (Math.Abs(playerPos.x - transform.position.x) < 0.01f || Math.Abs(playerPos.z - transform.position.z) <= 0.01f))
+            if (player.HasLayer(other.gameObject.layer))
             {
-                //Play a sound, and end the level/game
-                audioManager.Play("enterPortal");
-
-                if (playerPos.y > 5)
-                {
-                    PlayerEntity.Instance.transform.position += Vector3.up * 10;
-                }
-                else
-                {
-                    PlayerEntity.Instance.transform.position += Vector3.down * 10;
-                }
-
-                if (invisible)
-                {
-                    Destroy(gameObject);
-                }
-            }
+                hasPlayer = false;
+            }        
         }
     }
 }

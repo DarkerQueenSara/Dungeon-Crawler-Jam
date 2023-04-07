@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Enemies;
 using Items;
 using Player;
@@ -41,16 +42,16 @@ namespace Managers
         /// The time it takes for a unit to move to a new position
         /// </summary>
         public float unitTimeToMove = 0.2f;
-
-        /// <summary>
-        /// The portal in map
-        /// </summary>
-        [HideInInspector] public Portal portalInMap;
-
+        
         /// <summary>
         /// The enemies in map
         /// </summary>
         public List<StateMachine> _enemiesInMap;
+        
+        /// <summary>
+        /// The enemies in map
+        /// </summary>
+        public List<Portal> portalsInMap;
         
         /// <summary>
         /// The player start position
@@ -125,6 +126,31 @@ namespace Managers
             //Wait until they have finished moving
             yield return new WaitForSeconds(unitTimeToMove);
             
+            Portal toDestroy = null;
+            
+            foreach (Portal p in portalsInMap.Where(p => p.hasPlayer))
+            {
+                if (PlayerEntity.Instance.transform.position.y > 5)
+                {
+                    PlayerEntity.Instance.transform.position += Vector3.down * 10;
+                }
+                else
+                {
+                    PlayerEntity.Instance.transform.position += Vector3.up * 10;
+                }
+
+                if (p.invisible)
+                {
+                    toDestroy = p;
+                }
+            }
+
+            if (toDestroy != null)
+            {
+                portalsInMap.Remove(toDestroy);
+                Destroy(toDestroy.gameObject);
+            }
+
             //Increase the number of turns, and if the right amount has passed, take damage from lack of sleep
             CurrentTurn++;
 
