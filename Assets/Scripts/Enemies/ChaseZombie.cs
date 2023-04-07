@@ -22,6 +22,8 @@ namespace Enemies
         public LayerMask obstacleDoor;
         
         public float detectionRange;
+        
+        public StateMachine manager;
 
         /// <summary>
         /// The original position in each turn
@@ -52,12 +54,14 @@ namespace Enemies
             if (isAttackRange)
             {
                 Debug.Log("Got to AttackRange");
+                manager.stateID = 2;
                 return attack;
             }
 
             else if (outOfChase)
             {
                 Debug.Log("OutOfChase");
+                manager.stateID = 0;
                 return idle;
             }
 
