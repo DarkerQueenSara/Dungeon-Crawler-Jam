@@ -41,7 +41,7 @@ namespace Puzzles
             if (player.HasLayer(other.gameObject.layer))
             {
                 hasPlayer = false;
-            }        
+            }
         }
     }
 }
