@@ -11,6 +11,7 @@ namespace UI.Items.InventoryGuns
             base.Start();
             item = ItemType.Handgun;
             damage = 50;
+            range = 5;
         }
 
         public override void UseItem()

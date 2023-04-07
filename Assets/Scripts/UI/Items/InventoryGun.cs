@@ -8,6 +8,7 @@ namespace UI.Items
     {
         public int damage;
         public int maxAmmo;
+        public int range;
         [HideInInspector] public int currentAmmo;
 
         public TextMeshProUGUI ammoText;
@@ -29,12 +30,13 @@ namespace UI.Items
                 currentAmmo--;
                 Debug.Log("Bang!");
                 RaycastHit hit;
-                if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+                if (Physics.Raycast(transform.position, transform.forward, out hit, range))
                 {
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
                     {
                         // Deal damage to the enemy
-                        //hit.collider.GetComponent<ZombieMelee>().DealDamage(damage);
+                        hit.collider.GetComponent<ZombieMelee>().DealDamageSelf(damage);
+                        Debug.Log("Hit");
                     }
                 }
             }
