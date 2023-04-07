@@ -23,6 +23,8 @@ namespace Enemies
             manager = GetComponent<StateMachine>();
         }
 
+        
+
         public void DealDamageSelf(int damageNew)
         {
             health += -damageNew;
@@ -30,9 +32,18 @@ namespace Enemies
             
             if (health <= 0)
             {
-                Destroy(gameObject);
+                
+                manager.animator.SetBool("isDead", true);
+                
+                Invoke("DeathZombie", 1f);
             }
-            manager.animator.SetBool("isDamaged", true);
+            manager.animator.SetBool("isDamaged", false);
+        }
+
+
+        private void DeathZombie()
+        {
+            Destroy(gameObject);
         }
     }
 }

@@ -1,7 +1,9 @@
+using System.Collections;
 using System.IO;
 using Audio;
 using Managers;
 using Managers.Save_System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +48,9 @@ namespace UI
         /// </summary>
         private AudioManager _audioManager;
 
+        [Header("Fancy Animation Stuff")] public float fadeDuration;
+        public TextMeshProUGUI gameTitle;
+        
         /// <summary>
         /// Starts this instance.
         /// </summary>
@@ -61,21 +66,49 @@ namespace UI
             tutorialButton.onClick.AddListener(ShowTutorial);
             backButton.onClick.AddListener(ShowTitleScreen);
             exitButton.onClick.AddListener(ExitGame);
-            //_audioManager = GetComponent<AudioManager>();
-            //_audioManager.Play("MenuMusic");
+            _audioManager = GetComponent<AudioManager>();
+            StartCoroutine(FancyRoutine());
+        }
+
+        private IEnumerator FancyRoutine()
+        {
+            startButton.gameObject.SetActive(false);
+            tutorialButton.gameObject.SetActive(false);
+            loadButton.gameObject.SetActive(false);
+            exitButton.gameObject.SetActive(false);
+            _audioManager.Play("LabyrinthOfDeath");
+            // fade title in
+            for (float i = 0; i < fadeDuration; i += Time.deltaTime)
+            {
+                // set color with i as alpha
+                gameTitle.color = new Color(1, 1, 1, i);
+                yield return null;
+            }
+            _audioManager.Play("Stinger");
+            startButton.gameObject.SetActive(true);
+            tutorialButton.gameObject.SetActive(true);
+            loadButton.gameObject.SetActive(true);
+            exitButton.gameObject.SetActive(true);
+            
+            yield return new WaitForSeconds(1f);
+            
+            _audioManager.Play("MenuMusic");
+            
         }
 
         /// <summary>
         /// Starts the game.
         /// </summary>
-        private static void StartGame()
+        private void StartGame()
         {
+            _audioManager.Stop("MenuMusic");
             SaveSystem.DeletePlayer();
             GameManager.Instance.LoadMainScene();
         }
     
-        private static void LoadGame()
+        private void LoadGame()
         {
+            _audioManager.Stop("MenuMusic");
             GameManager.Instance.LoadMainScene();
         }
 

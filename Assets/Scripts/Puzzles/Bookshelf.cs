@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Player;
 using UnityEngine;
 
@@ -33,11 +34,15 @@ namespace Puzzles
         [HideInInspector] public bool blackBook;
         [HideInInspector] public bool blueBook;
 
-        public LockedFinalDoor lockedDoor;
+        public List<LockedFinalDoor> lockedDoor;
 
         public void Update()
         {
-            if (redBook && blackBook && blueBook) lockedDoor.locked = false;
+            if (redBook && blackBook && blueBook)
+            {
+                lockedDoor[0].locked = false;
+                lockedDoor[1].locked = false;
+            }
         }
 
         public void GetMessage()

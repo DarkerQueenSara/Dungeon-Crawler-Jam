@@ -104,7 +104,7 @@ namespace Enemies
             foreach (var direction in fourDirections)
             {
                 if (Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
-                    transform.localRotation, obstacles).Length == 0 && Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
+                    transform.localRotation, obstacles).Length == 0 && Physics.OverlapBox(transform.position + direction, new Vector3(2f, 2f, 2f),
                     transform.localRotation, obstacleDoor).Length == 0)
                 {
                     //if player is directly adjacent to gremlin, a.k.a, didn't move
@@ -138,7 +138,7 @@ namespace Enemies
                      .OrderByDescending(x => GetDistanceInTiles(transform.position + x, playerPos)).ToList();
              */
             //Start moving, picking the first item on the list
-            StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero, playerPos) : MoveZombie(possibleMoves[0],playerPos));
+            StartCoroutine(possibleMoves.Count == 0 ? MoveZombie(Vector3.zero) : MoveZombie(possibleMoves[0]));
         }
 
 
@@ -147,14 +147,13 @@ namespace Enemies
         /// </summary>
         /// <param name="direction">The direction.</param>
         /// <returns></returns>
-        private IEnumerator MoveZombie(Vector3 direction, Vector3 playerPos)
+        private IEnumerator MoveZombie(Vector3 direction)
         {
             isActing = true;
             if (direction != Vector3.zero)
             {
-                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, direction);
-                Vector3.RotateTowards(transform);
-                transform.root.Rotate(PlayerEntity.Instance.transform);
+                transform.forward = direction;
+                transform.root.forward = direction;
             }
 
 
