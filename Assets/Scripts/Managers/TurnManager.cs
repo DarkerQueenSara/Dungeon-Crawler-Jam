@@ -45,12 +45,17 @@ namespace Managers
         /// <summary>
         /// The portal in map
         /// </summary>
-        [HideInInspector] public EndPortal portalInMap;
+        [HideInInspector] public Portal portalInMap;
 
         /// <summary>
         /// The enemies in map
         /// </summary>
         public List<StateMachine> _enemiesInMap;
+        
+        /// <summary>
+        /// The player start position
+        /// </summary>
+        private Vector3 _playerStartPosition;
         
         /// <summary>
         /// Gets a value indicating whether [processing turn].

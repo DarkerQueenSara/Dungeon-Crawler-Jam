@@ -1,9 +1,4 @@
-using System.Collections.Generic;
 using Audio;
-using Enemies;
-using Items;
-using Maps;
-using Player;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Grid = Maps.Grid<Maps.GridCell<bool>>;
@@ -55,22 +50,6 @@ namespace Managers
         /// The player prefab
         /// </summary>
         [Header("Prefabs")] public GameObject playerPrefab;
-        
-
-        /// <summary>
-        /// The hud UI
-        /// </summary>
-        [Header("UI Elements")] public GameObject hudUI;
-        /// <summary>
-        /// The shop UI
-        /// </summary>
-        public GameObject itemBoxUI;
-
-        /// <summary>
-        /// The player start position
-        /// </summary>
-        private Vector3 _playerStartPosition;
-        
 
         /// <summary>
         /// Starts this instance.
