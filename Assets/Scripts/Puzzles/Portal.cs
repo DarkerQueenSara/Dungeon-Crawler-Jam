@@ -32,8 +32,7 @@ namespace Puzzles
         /// </summary>
         private void Start()
         {
-            //audioManager = GetComponent<AudioManager>();
-            //audioManager.Play("Portal");
+            audioManager = GetComponent<AudioManager>();
         }
 
         /// <summary>
@@ -48,15 +47,25 @@ namespace Puzzles
                 (Math.Abs(playerPos.x - transform.position.x) < 0.01f || Math.Abs(playerPos.z - transform.position.z) <= 0.01f))
             {
                 //Play a sound, and end the level/game
-                audioManager.Play("enterPortal");
+                audioManager.Play("enter-portal");
 
                 if (playerPos.y > 5)
                 {
-                    PlayerEntity.Instance.transform.position += Vector3.up * 10;
+                    PlayerEntity.Instance.transform.position += Vector3.up * 10; 
+                    //Check World 1 sound
+                    if(audioManager.IsPlaying("world1-default-ambience")) // this stops the audio coming from TurnManager? or just checks for Portal ? 
+                        audioManager.Stop("world1-default-ambience");
+                    //Start World 2 sound
+                    audioManager.Play("world2-default-ambience");
                 }
                 else
                 {
                     PlayerEntity.Instance.transform.position += Vector3.down * 10;
+                    //Check World 2 sound
+                    if(audioManager.IsPlaying("world2-default-ambience"))
+                        audioManager.Stop("world2-default-ambience");
+                    //Start World 1 sound
+                    audioManager.Play("world1-default-ambience");
                 }
 
                 if (invisible)
