@@ -101,9 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isActing: 0
-  player: {fileID: 0}
+  player: {fileID: 6563976548662211366, guid: e956cb3c4e052524eabaa9673802dad3, type: 3}
   chase: {fileID: 6468750998667893565}
-  owner: {fileID: 0}
+  owner: {fileID: 5816793103281112450}
 --- !u!1 &4265599556756465956
 GameObject:
   m_ObjectHideFlags: 0
@@ -259,7 +259,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 5632524438931371640}
-  owner: {fileID: 0}
 --- !u!114 &5816793103281112450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +273,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   damage: 25
-  state: {fileID: 622302254641200882}
 --- !u!1 &8809160309136374590
 GameObject:
   m_ObjectHideFlags: 0

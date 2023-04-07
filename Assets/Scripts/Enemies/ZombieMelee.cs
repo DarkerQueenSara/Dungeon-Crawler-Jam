@@ -26,5 +26,15 @@ namespace Enemies
         {
             transform.position = state.positionCurrentState;
         }*/
+
+        public void DealDamageSelf(int damage)
+        {
+            health += -damage;
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }
