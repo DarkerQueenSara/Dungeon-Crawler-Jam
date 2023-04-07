@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 91398400279597777}
   - component: {fileID: 6468750998667893565}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ChaseState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1161639289273920751}
   - component: {fileID: 8294131856436979316}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AttackState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1697639025974977955}
   - component: {fileID: 5632524438931371640}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: IdleState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 4492415768255938846}
   - component: {fileID: 6813356401517891182}
   - component: {fileID: 9186550513020252248}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -331,7 +331,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217288137534963473}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: States
   m_TagString: Untagged
   m_Icon: {fileID: 0}
