@@ -243,6 +243,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2631665639689677201}
   - component: {fileID: 5246325844795261555}
+  - component: {fileID: -8881089682180356395}
   m_Layer: 10
   m_Name: AnimatedDoor
   m_TagString: Untagged
@@ -288,6 +289,26 @@ MonoBehaviour:
   cameraMoveDuration2: 3
   hingeRotation: 110
   hingeRotDuration: 2
+--- !u!114 &-8881089682180356395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6065544352299320534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f791d31bbabdb6840a27c4bbf99f9cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: door-open
+    clip: {fileID: 8300000, guid: 6515b75134dd0304ab44893514b2ff91, type: 3}
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 0.5
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &7162720060351861124
 PrefabInstance:
   m_ObjectHideFlags: 0

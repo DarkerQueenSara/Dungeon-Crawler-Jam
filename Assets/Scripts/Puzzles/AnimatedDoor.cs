@@ -26,7 +26,7 @@ namespace Puzzles
         
         private void Start()
         {
-            //_audioManager = GetComponent<AudioManager>();
+            _audioManager = GetComponent<AudioManager>();
             _defaultDoorCameraTransform = doorCamera.transform;
             _defaultHingeCameraTransform = hinge.transform;
             _started = true;
@@ -77,7 +77,7 @@ namespace Puzzles
             Vector3 targetRot = hinge.transform.rotation.eulerAngles + (Vector3.up * hingeRotation);
             float elapsedTime = 0.0f;
 
-            //_audioManager.Play("DoorOpen");
+            _audioManager.Play("door-open");
             while (elapsedTime < hingeRotDuration)
             {
                 hinge.transform.rotation = Quaternion.Euler(Vector3.Lerp(origRot, targetRot, elapsedTime / hingeRotDuration));
@@ -85,6 +85,8 @@ namespace Puzzles
 
                 yield return null;
             }        
+            _audioManager.Play("door-close");
+
         }
     }
 }
