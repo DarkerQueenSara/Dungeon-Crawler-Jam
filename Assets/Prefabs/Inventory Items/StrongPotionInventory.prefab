@@ -116,6 +116,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   image: {fileID: 6775182960389406305}
-  item: 0
+  item: 5
   parentAfterDrag: {fileID: 0}
   lifeToRecover: 50

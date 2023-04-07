@@ -10,7 +10,7 @@ namespace UI.Items
     {
         [Header("UI")] public Image image;
 
-        [HideInInspector] public ItemType item;
+        public ItemType item;
 
         [HideInInspector] public Transform parentAfterDrag;
 
