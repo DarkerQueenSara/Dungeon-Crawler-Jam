@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Managers;
+using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -150,6 +151,10 @@ namespace Enemies
         private IEnumerator MoveZombie(Vector3 direction)
         {
             isActing = true;
+            
+            transform.LookAt(PlayerEntity.Instance.transform);
+            transform.root.LookAt(PlayerEntity.Instance.transform);
+
 
             var elapsedTime = 0.0f;
 
