@@ -62,7 +62,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0.27503014, a: 1}
+  m_Color: {r: 1, g: 0, b: 0.63343525, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -163,4 +163,5 @@ MonoBehaviour:
   image: {fileID: 6775182960389406305}
   item: 6
   parentAfterDrag: {fileID: 0}
-  lifeToRecover: 0
+  combinedPrefab: {fileID: 5467317373689215300, guid: d5079832b0b9f0446817f61469d19af6,
+    type: 3}

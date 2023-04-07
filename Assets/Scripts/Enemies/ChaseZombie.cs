@@ -18,6 +18,8 @@ namespace Enemies
         /// The layers that count as obstacles for the gremlins
         /// </summary>
         public LayerMask obstacles;
+
+        public LayerMask obstacleDoor;
         
         public float detectionRange;
 
@@ -97,7 +99,8 @@ namespace Enemies
             foreach (var direction in fourDirections)
             {
                 if (Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
-                    transform.localRotation, obstacles).Length == 0)
+                    transform.localRotation, obstacles).Length == 0 && Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
+                    transform.localRotation, obstacleDoor).Length == 0)
                 {
                     //if player is directly adjacent to gremlin, a.k.a, didn't move
                     if (Math.Abs((transform.position + direction).x - playerPos.x) <= 0.1f &&

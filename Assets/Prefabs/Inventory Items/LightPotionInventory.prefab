@@ -164,3 +164,5 @@ MonoBehaviour:
   item: 4
   parentAfterDrag: {fileID: 0}
   lifeToRecover: 10
+  combinedPrefab: {fileID: 5467317373689215300, guid: d5079832b0b9f0446817f61469d19af6,
+    type: 3}

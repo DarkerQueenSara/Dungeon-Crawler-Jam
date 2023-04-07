@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Audio;
 using Managers;
+using Player;
 using UnityEngine;
 using Random = UnityEngine.Random;
 namespace Enemies
@@ -12,9 +13,10 @@ namespace Enemies
 
     public class AttackZombie : BaseState
     {
-        public bool isAttackRange = true;
-        
+        private bool isAttackRange = true;
+        public PlayerEntity player;
         public ChaseZombie  chase;
+        public ZombieMelee owner;
 
         // Start is called before the first frame update
         public override BaseState RunState(Vector3 playerPos)
@@ -25,6 +27,8 @@ namespace Enemies
             {
                 return chase;
             }
+
+            AttackThePlayer();
 
             return this;
         }
@@ -45,6 +49,11 @@ namespace Enemies
             return;
         }
 
+        private void AttackThePlayer()
+        {
+            player.health.DealDamage(owner.damage);
+            return;
+        }
 
     }
 }

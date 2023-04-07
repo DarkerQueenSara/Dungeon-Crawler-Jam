@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Enemies;
+using TMPro;
 using UnityEngine;
 
 namespace UI.Items
@@ -27,7 +28,15 @@ namespace UI.Items
             {
                 currentAmmo--;
                 Debug.Log("Bang!");
-                //TODO shoot
+                RaycastHit hit;
+                if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+                {
+                    if (hit.collider.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+                    {
+                        // Deal damage to the enemy
+                        //hit.collider.GetComponent<ZombieMelee>().DealDamage(damage);
+                    }
+                }
             }
             else
                 Debug.Log("Out of ammo...");

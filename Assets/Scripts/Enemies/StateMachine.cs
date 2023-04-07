@@ -9,7 +9,6 @@ namespace Enemies
     public class StateMachine : MonoBehaviour
     {
         public BaseState currentState;
-        public ZombieMelee owner;
 
         public void RunStateMachine(Vector3 playerPos)
         {
