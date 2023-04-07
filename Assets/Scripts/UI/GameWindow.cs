@@ -126,7 +126,14 @@ namespace UI
                          Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
                              Quaternion.identity, bookshelf).Length > 0)
                 {
-                    
+                    Bookshelf.Instance.GetMessage();
+                }
+                else if (lever.HasLayer(raycastHit.collider.gameObject.layer) &&
+                         Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
+                             Quaternion.identity, lever).Length > 0)
+                {
+                    _clickedItem = raycastHit.collider.gameObject;
+                    _clickedItem.GetComponent<Lever>().ActivateLever();
                 }
             }
         }
