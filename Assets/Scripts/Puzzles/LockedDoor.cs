@@ -1,4 +1,6 @@
-﻿namespace Puzzles
+﻿using Player;
+
+namespace Puzzles
 {
     public class LockedDoor : Door
     {
@@ -9,6 +11,10 @@
             if (!locked)
             {
                 base.TeleportPlayer();
+            }
+            else
+            {
+                PlayerHUD.Instance.AddMessage("The door is locked.");
             }
         }
     }

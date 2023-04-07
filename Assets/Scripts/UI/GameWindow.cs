@@ -20,6 +20,7 @@ namespace UI
         public LayerMask environmentItems;
         public LayerMask itemBoxes;
         public LayerMask doors;
+        public LayerMask keypads;
         
         private GameObject _clickedItem;
         
@@ -103,6 +104,13 @@ namespace UI
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     _clickedItem.GetComponent<Door>().TeleportPlayer();
+                }
+                else if (keypads.HasLayer(raycastHit.collider.gameObject.layer) &&
+                         Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
+                             Quaternion.identity, keypads).Length > 0)
+                {
+                    _clickedItem = raycastHit.collider.gameObject;
+                    _clickedItem.GetComponent<Keypad>().StartPuzzle();
                 }
             }
         }
