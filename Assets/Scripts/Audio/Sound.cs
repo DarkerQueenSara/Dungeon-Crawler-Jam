@@ -28,6 +28,8 @@ namespace Audio
         /// </summary>
         [Range(0.1f, 3f)] public float pitch = 1f;
 
+        [Range(0.0f, 1.0f)] public float spatialBlend = 0.0f;
+        
         /// <summary>
         /// If the sound loops
         /// </summary>
@@ -49,6 +51,7 @@ namespace Audio
             audioSource.volume = volume;
             audioSource.pitch = pitch;
             audioSource.loop = loop;
+            audioSource.spatialBlend = spatialBlend;
             source = audioSource;
         }
 
