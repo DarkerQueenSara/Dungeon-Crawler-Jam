@@ -58,6 +58,7 @@ namespace Player
         public void DealDamage(int damage)
         {
             PlayerEntity.Instance.audioManager.Play("Damage");
+            PlayerHUD.Instance.AddMessage("The zombie dealt + " + damage + " damage.");
             currentHealth =
                 Math.Clamp(
                     Mathf.RoundToInt(currentHealth - damage),
@@ -73,6 +74,7 @@ namespace Player
         public void RestoreHealth(int heal)
         {
             currentHealth = Math.Clamp(currentHealth + heal, 0, maxHealth);
+            PlayerHUD.Instance.AddMessage("You healed yourself for + " + heal + " HP.");
         }
 
         /// <summary>
@@ -81,7 +83,7 @@ namespace Player
         /// </summary>
         private static void Die()
         {
-            SceneManager.LoadScene(3);
+            GameManager.Instance.LoadCredits();
         }
     }
 }

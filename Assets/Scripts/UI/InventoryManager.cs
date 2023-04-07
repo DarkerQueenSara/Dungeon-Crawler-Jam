@@ -51,7 +51,6 @@ namespace UI
             }
             else
             {
-                              
                 
                 GameObject toSpawn = GetRightItem(clickedItem.item);
                 if (toSpawn == null)
@@ -60,6 +59,7 @@ namespace UI
                 }
 
                 GameObject spawnedItem = Instantiate(toSpawn, correctSlot.transform.position, Quaternion.identity, correctSlot.transform); 
+                PlayerHUD.Instance.AddMessage("You got a " + clickedItem.item + ".");
                 if (clickedItem is EnvironmentGun clickedItemGun)
                 {
                     spawnedItem.GetComponent<InventoryGun>().currentAmmo = clickedItemGun.currentAmmo;
