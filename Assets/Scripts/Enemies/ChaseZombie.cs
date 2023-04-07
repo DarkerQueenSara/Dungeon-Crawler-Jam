@@ -104,7 +104,7 @@ namespace Enemies
             foreach (var direction in fourDirections)
             {
                 if (Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
-                    transform.localRotation, obstacles).Length == 0 && Physics.OverlapBox(transform.position + direction, new Vector3(0.5f, 0.5f, 0.5f),
+                    transform.localRotation, obstacles).Length == 0 && Physics.OverlapBox(transform.position + direction, new Vector3(2f, 2f, 2f),
                     transform.localRotation, obstacleDoor).Length == 0)
                 {
                     //if player is directly adjacent to gremlin, a.k.a, didn't move
