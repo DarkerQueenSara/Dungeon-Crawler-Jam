@@ -17,9 +17,9 @@ TagManager:
   - EnvironmentItem
   - ItemBox
   - Door
-  - 
-  - 
-  - 
+  - Zombie
+  - Keypad
+  - SavePoint
   - 
   - 
   - 

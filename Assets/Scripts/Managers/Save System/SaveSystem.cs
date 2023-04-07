@@ -20,6 +20,7 @@ namespace Managers.Save_System
             stream.Close();
         
             Debug.Log("Save file created at " + path);
+            PlayerHUD.Instance.AddMessage("Game saved.");
         }
     
         public static PlayerData LoadPlayer()

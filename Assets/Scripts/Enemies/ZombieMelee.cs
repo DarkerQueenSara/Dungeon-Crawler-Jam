@@ -14,10 +14,8 @@ namespace Enemies
 
     public class ZombieMelee : MonoBehaviour
     {
-        public float health = 100f;
-        public float damage = 25f;
-        public StateMachine state;
-
+        public int health;
+        public int damage;
 
         /*private void Awake()
         {
@@ -28,5 +26,15 @@ namespace Enemies
         {
             transform.position = state.positionCurrentState;
         }*/
+
+        public void DealDamageSelf(int damage)
+        {
+            health += -damage;
+
+            if (health <= 0)
+            {
+                Destroy(gameObject);
+            }
+        }
     }
 }

@@ -16,11 +16,11 @@ namespace UI.Items.InventorySingles
         public override void UseItem()
         {
             PlayerEntity.Instance.health.RestoreHealth(lifeToRecover);
-            Destroy(this);
+            Destroy(gameObject);
         }
 
         public override void CombineItem(InventoryItem item)
-        { 
+        {
         }
 
     }
