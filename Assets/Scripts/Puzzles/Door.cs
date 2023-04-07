@@ -12,7 +12,7 @@ namespace Puzzles
         public Camera mainCamera;
         
         private GameObject _spawned;
-        public void TeleportPlayer()
+        public virtual void TeleportPlayer()
         {
             if (mainCamera == null) mainCamera = Camera.main;
             mainCamera.enabled = false;
