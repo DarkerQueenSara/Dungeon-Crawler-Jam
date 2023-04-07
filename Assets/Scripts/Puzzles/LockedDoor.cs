@@ -2,7 +2,7 @@
 {
     public class LockedDoor : Door
     {
-        public bool locked;
+        public bool locked = true;
 
         public override void TeleportPlayer()
         {
