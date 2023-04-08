@@ -17,10 +17,12 @@ namespace Enemies
         public int health;
         public int damage;
         private StateMachine manager;
+        private AudioManager audioManager;  
 
         private void Start()
         {
             manager = GetComponent<StateMachine>();
+            audioManager = GetComponent<AudioManager>();
         }
 
         
@@ -29,6 +31,7 @@ namespace Enemies
         {
             health += -damageNew;
             manager.animator.SetBool("isDamaged", true);
+            audioManager.Play("zombie-hurt");
             
             if (health <= 0)
             {
@@ -43,6 +46,8 @@ namespace Enemies
 
         private void DeathZombie()
         {
+            audioManager.Play("zombie-dead");
+
             Destroy(gameObject);
         }
     }

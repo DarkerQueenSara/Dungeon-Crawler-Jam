@@ -1612,6 +1612,7 @@ GameObject:
   - component: {fileID: 622302254641200882}
   - component: {fileID: 5816793103281112450}
   - component: {fileID: 955744955027623551}
+  - component: {fileID: 4054931958462203317}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
@@ -1737,6 +1738,33 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4054931958462203317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8583873393882566960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f791d31bbabdb6840a27c4bbf99f9cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: zombie-hurt
+    clip: {fileID: 8300000, guid: d7fb0e7c9eb6d0340969a441e76dc6e2, type: 3}
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: zombie-dead
+    clip: {fileID: 8300000, guid: 3b80e3e372ce9ff4dac2ab2dd3182059, type: 3}
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &8809160309136374590
 GameObject:
   m_ObjectHideFlags: 0
