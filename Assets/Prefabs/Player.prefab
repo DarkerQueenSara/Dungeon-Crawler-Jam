@@ -211,6 +211,13 @@ MonoBehaviour:
     spatialBlend: 0.5
     loop: 0
     source: {fileID: 0}
+  - name: heal
+    clip: {fileID: 8300000, guid: 9c480783acac6294cba099026583d8e6, type: 3}
+    volume: 0.05
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
 --- !u!1 &6117398999681304933
 GameObject:
   m_ObjectHideFlags: 0

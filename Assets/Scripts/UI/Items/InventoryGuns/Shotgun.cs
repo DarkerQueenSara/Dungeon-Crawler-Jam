@@ -1,13 +1,16 @@
-﻿using Items;
+﻿using Audio;
+using Items;
 
 namespace UI.Items.InventoryGuns
 {
     public class Shotgun: InventoryGun
     {
-        
+        private AudioManager _audioManager;
+
         
         private void Start()
         {
+            _audioManager = GetComponent<AudioManager>();
             base.Start();
             item = ItemType.Shotgun;
             damage = 100;
@@ -17,6 +20,7 @@ namespace UI.Items.InventoryGuns
         public override void UseItem()
         {
             base.UseItem();
+            //_audioManager.Play("shoot");
         }
 
         public override void CombineItem(InventoryItem item)

@@ -1,4 +1,5 @@
-﻿using Enemies;
+﻿using Audio;
+using Enemies;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -11,12 +12,15 @@ namespace UI.Items
         public int maxAmmo;
         public int range;
         [HideInInspector] public int currentAmmo;
+        private AudioManager _audioManager;
 
         public TextMeshProUGUI ammoText;
         
         public void Start()
         {
             currentAmmo = maxAmmo;
+            _audioManager = GetComponent<AudioManager>();
+
         }
 
         private void Update()
@@ -28,6 +32,8 @@ namespace UI.Items
         {
             if (currentAmmo > 0)
             {
+                _audioManager.Play("shoot");
+
                 currentAmmo--;
 
                 RaycastHit hit;

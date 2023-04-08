@@ -1,4 +1,5 @@
 using System;
+using Audio;
 using Managers;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,12 +26,15 @@ namespace Player
         /// </summary>
         public LayerMask damageables;
 
+        private AudioManager _audioManager;
+
         /// <summary>
         /// Starts this instance.
         /// </summary>
         private void Start()
         {
             currentHealth = maxHealth;
+            _audioManager = GetComponent<AudioManager>();
         }
 
         /// <summary>
@@ -73,6 +77,7 @@ namespace Player
         /// <param name="heal">The amount to restore.</param>
         public void RestoreHealth(int heal)
         {
+            _audioManager.Play("heal");
             currentHealth = Math.Clamp(currentHealth + heal, 0, maxHealth);
             PlayerHUD.Instance.AddMessage("You healed yourself for + " + heal + " HP.");
         }

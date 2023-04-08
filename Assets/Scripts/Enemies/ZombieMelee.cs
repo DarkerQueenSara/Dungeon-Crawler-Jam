@@ -47,7 +47,6 @@ namespace Enemies
         private void DeathZombie()
         {
             audioManager.Play("zombie-dead");
-
             Destroy(gameObject);
         }
     }
