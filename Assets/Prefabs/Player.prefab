@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 315d743d0eaf39147951f79a7f838edc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 100
   currentHealth: 0
   damageables:
     serializedVersion: 2
@@ -212,6 +212,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: heal
+    clip: {fileID: 8300000, guid: 9c480783acac6294cba099026583d8e6, type: 3}
+    volume: 0.05
+    pitch: 1
+    spatialBlend: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: dead
     clip: {fileID: 8300000, guid: 9c480783acac6294cba099026583d8e6, type: 3}
     volume: 0.05
     pitch: 1
