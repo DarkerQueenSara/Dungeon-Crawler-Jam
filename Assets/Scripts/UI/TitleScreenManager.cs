@@ -92,7 +92,7 @@ namespace UI
             
             yield return new WaitForSeconds(1f);
             
-            _audioManager.Play("MenuMusic");
+            _audioManager.Play("MainMenu");
             
         }
 

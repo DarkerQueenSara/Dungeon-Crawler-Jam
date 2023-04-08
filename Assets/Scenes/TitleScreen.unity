@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2272,21 +2272,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: LabyrinthOfDeath
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 3b77cf467a99f924bb44a432ee723070, type: 3}
     volume: 0.2
     pitch: 1
     spatialBlend: 0
     loop: 0
     source: {fileID: 0}
   - name: Stinger
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 47f99feb7bdaf294285b1f548cd142de, type: 3}
     volume: 0.2
     pitch: 1
     spatialBlend: 0
     loop: 0
     source: {fileID: 0}
   - name: MainMenu
-    clip: {fileID: 0}
+    clip: {fileID: 8300000, guid: 364609b7b632fed469e0a8480f529a00, type: 3}
     volume: 0.2
     pitch: 1
     spatialBlend: 0
@@ -2305,7 +2305,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startButton: {fileID: 67141803}
-  loadButton: {fileID: 0}
   tutorialButton: {fileID: 1687344613}
   backButton: {fileID: 1987596872}
   exitButton: {fileID: 2086371877}
