@@ -38,19 +38,22 @@ namespace Enemies
         
           private void DetectPlayer()
           {
-              Collider[] targets = Physics.OverlapSphere(transform.position, radius, player);
+              Collider[] targets = Physics.OverlapSphere(transform.root.position, radius, player);
 
               if (targets.Length != 0)
               {
                   Transform target = targets[0].transform;
-                  Vector3 directionToTarget = (target.position - transform.position).normalized;
-
-                  if (Vector3.Angle(transform.position, directionToTarget) < angle / 2)
+                  Vector3 directionToTarget = (target.position - transform.root.position).normalized;
+                    Debug.Log(Vector3.Angle(transform.root.position, directionToTarget));
+                    
+                  if (Vector3.Angle(transform.root.forward, directionToTarget) < angle / 2)
                   {
-                      float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-                      if (!Physics.Raycast(transform.position, directionToTarget, distanceToTarget, obstacles))
+                      float distanceToTarget = Vector3.Distance(transform.root.position, target.position);
+
+                      if (!Physics.Raycast(transform.root.position, directionToTarget, distanceToTarget, obstacles))
                       {
+
                           isInRange = true;
                       }
                       else
