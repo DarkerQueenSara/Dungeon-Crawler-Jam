@@ -92,14 +92,14 @@ namespace UI
             if (Physics.Raycast(renderRay, out var raycastHit))
             {
                 Debug.Log(raycastHit.collider.gameObject);
-                if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer) && 
-                    Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, environmentItems).Length > 0)
+                if (environmentItems.HasLayer(raycastHit.collider.gameObject.layer) /*&& 
+                    Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f), Quaternion.identity, environmentItems).Length > 0*/)
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     PickUpItem(_clickedItem);
-                } else if (itemBoxes.HasLayer(raycastHit.collider.gameObject.layer) &&
+                } else if (itemBoxes.HasLayer(raycastHit.collider.gameObject.layer) /*&&
                            Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(0.25f, 3f, 0.25f),
-                               Quaternion.identity, itemBoxes).Length > 0)
+                               Quaternion.identity, itemBoxes).Length > 0*/)
                 {
                     PlayerHUD.Instance.OpenItemBox();
                 } else if (doors.HasLayer(raycastHit.collider.gameObject.layer) &&
@@ -109,28 +109,28 @@ namespace UI
                     _clickedItem = raycastHit.collider.gameObject;
                     _clickedItem.GetComponent<Door>().TeleportPlayer();
                 }
-                else if (keypads.HasLayer(raycastHit.collider.gameObject.layer) &&
+                else if (keypads.HasLayer(raycastHit.collider.gameObject.layer) /*&&
                          Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
-                             Quaternion.identity, keypads).Length > 0)
+                             Quaternion.identity, keypads).Length > 0*/)
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     _clickedItem.GetComponent<Keypad>().StartPuzzle();
                 }
-                else if (savePoint.HasLayer(raycastHit.collider.gameObject.layer) &&
+                /*else if (savePoint.HasLayer(raycastHit.collider.gameObject.layer) &&
                          Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
                              Quaternion.identity, savePoint).Length > 0)
                 {
                     SaveSystem.SavePlayer(PlayerEntity.Instance);
-                }
-                else if (bookshelf.HasLayer(raycastHit.collider.gameObject.layer) &&
+                }*/
+                else if (bookshelf.HasLayer(raycastHit.collider.gameObject.layer) /*&&
                          Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
-                             Quaternion.identity, bookshelf).Length > 0)
+                             Quaternion.identity, bookshelf).Length > 0*/)
                 {
                     Bookshelf.Instance.GetMessage();
                 }
-                else if (lever.HasLayer(raycastHit.collider.gameObject.layer) &&
+                else if (lever.HasLayer(raycastHit.collider.gameObject.layer) /*&&
                          Physics.OverlapBox(PlayerEntity.Instance.GetPositionAhead(), new Vector3(1f, 3f, 1f),
-                             Quaternion.identity, lever).Length > 0)
+                             Quaternion.identity, lever).Length > 0*/)
                 {
                     _clickedItem = raycastHit.collider.gameObject;
                     _clickedItem.GetComponent<Lever>().ActivateLever();

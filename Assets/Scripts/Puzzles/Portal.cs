@@ -15,7 +15,7 @@ namespace Puzzles
         /// <summary>
         /// If the player has stepped into the portal
         /// </summary>
-        public bool hasPlayer;
+        [HideInInspector] public bool hasPlayer;
         /// <summary>
         /// The AudioManager
         /// </summary>

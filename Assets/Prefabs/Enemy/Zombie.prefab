@@ -1701,7 +1701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentState: {fileID: 5632524438931371640}
-  animator: {fileID: 0}
+  animator: {fileID: 955744955027623551}
   stateID: 0
 --- !u!114 &5816793103281112450
 MonoBehaviour:

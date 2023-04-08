@@ -1,5 +1,6 @@
 ﻿using Audio;
 using Enemies;
+using Managers;
 using Player;
 using TMPro;
 using UnityEngine;
@@ -45,6 +46,7 @@ namespace UI.Items
                     if (hit.collider.gameObject.layer == LayerMask.NameToLayer("DestructibleWall"))
                         hit.collider.GetComponent<DestructibleWall>().RecieveDamage();
                 }
+                TurnManager.Instance.ProcessTurn(PlayerEntity.Instance.transform.position);
             }
             else
                 Debug.Log("Out of ammo...");

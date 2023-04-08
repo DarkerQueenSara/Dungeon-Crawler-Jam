@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7549278590798008652}
   - component: {fileID: 3178035320715782189}
   - component: {fileID: 3911504078451859115}
+  - component: {fileID: 7566379265956589825}
   m_Layer: 0
   m_Name: InvisiblePortal
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3178035320715782189
 BoxCollider:
@@ -72,3 +73,23 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   invisible: 0
+--- !u!114 &7566379265956589825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 556572688527377515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f791d31bbabdb6840a27c4bbf99f9cd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: enter-portal
+    clip: {fileID: 8300000, guid: 1f15cd985408c7540abcad090d794d32, type: 3}
+    volume: 0.2
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
+    source: {fileID: 0}

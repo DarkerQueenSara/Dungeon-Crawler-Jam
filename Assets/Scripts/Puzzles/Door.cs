@@ -14,11 +14,11 @@ namespace Puzzles
         private GameObject _spawned;
         public virtual void TeleportPlayer()
         {
+            PlayerEntity.Instance.movement.LockMovement();
             if (mainCamera == null) mainCamera = Camera.main;
-            mainCamera.enabled = false;
+            if (mainCamera != null) mainCamera.enabled = false;
             _spawned = Instantiate(animatedDoor);
             PlayerEntity.Instance.TeleportPlayer();
-            PlayerEntity.Instance.movement.LockMovement();
             Invoke(nameof(FinishAnimation), animTime);
         }
 

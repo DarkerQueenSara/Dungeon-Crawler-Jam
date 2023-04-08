@@ -1,4 +1,5 @@
 using Items;
+using Managers;
 using Player;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -21,6 +22,7 @@ namespace UI.Items.InventorySingles
         public override void UseItem()
         {
             PlayerEntity.Instance.health.RestoreHealth(lifeToRecover);
+            TurnManager.Instance.ProcessTurn(PlayerEntity.Instance.transform.position);
             Destroy(gameObject);
 
         }

@@ -77,15 +77,15 @@ namespace Player
             if (col.Length > 0)
             {
 
-                foreach (Collider t in col)
+                /*foreach (Collider t in col)
                 {
                     if (direction == transform.forward && doors.HasLayer(t.gameObject.layer))
                     {
-                        LockMovement();
+                        //LockMovement();
                         t.gameObject.GetComponent<Door>().TeleportPlayer();
                         yield break;
                     }
-                }
+                }*/
                 IsMoving = false;
                 yield break;
             }

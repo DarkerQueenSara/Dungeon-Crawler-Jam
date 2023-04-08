@@ -53,7 +53,6 @@ namespace Enemies
 
                       if (!Physics.Raycast(transform.root.position, directionToTarget, distanceToTarget, obstacles))
                       {
-
                           isInRange = true;
                       }
                       else

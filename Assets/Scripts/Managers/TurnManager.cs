@@ -53,7 +53,7 @@ namespace Managers
         /// </summary>
         [HideInInspector] public AudioManager audioManager;
 
-        public List<StateMachine> _enemiesInMap;
+        public List<StateMachine> enemiesInMap;
         
         /// <summary>
         /// The enemies in map
@@ -87,7 +87,8 @@ namespace Managers
         public void Start()
         {
             //Create the lists if they haven't been created yet 
-            _enemiesInMap ??= new List<StateMachine>();
+            enemiesInMap ??= new List<StateMachine>();
+            portalsInMap ??= new List<Portal>();
             audioManager = GetComponent<AudioManager>();
             //Start ambience sound in World 1
             audioManager.Play("world01-default-ambience");
@@ -99,8 +100,8 @@ namespace Managers
         /// <param name="g">The zombie.</param>
         public void AddZombie(StateMachine g)
         {
-            _enemiesInMap ??= new List<StateMachine>();
-            _enemiesInMap.Add(g);
+            enemiesInMap ??= new List<StateMachine>();
+            enemiesInMap.Add(g);
         }
         
         /// <summary>
@@ -109,7 +110,7 @@ namespace Managers
         /// <returns>Number of zombies</returns>
         public int GetNumberOfZombies()
         {
-            return _enemiesInMap.Count;
+            return enemiesInMap.Count;
         }
 
         /// <summary>
@@ -131,7 +132,7 @@ namespace Managers
         private IEnumerator TurnCoroutine(Vector3 playerPos)
         {
             //Move all the zombies
-            foreach (var z in _enemiesInMap) z.RunStateMachine(playerPos);
+            foreach (var z in enemiesInMap) z.RunStateMachine(playerPos);
 
             //Wait until they have finished moving
             yield return new WaitForSeconds(unitTimeToMove);
@@ -196,7 +197,7 @@ namespace Managers
         /// </returns>
         private bool EntitiesAreMoving()
         {
-            foreach (var z in _enemiesInMap)
+            foreach (var z in enemiesInMap)
                 if (z.currentState.isActing)
                     return true;
 

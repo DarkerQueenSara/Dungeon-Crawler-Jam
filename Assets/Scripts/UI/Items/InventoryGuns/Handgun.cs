@@ -37,8 +37,6 @@ namespace UI.Items.InventoryGuns
                     this.currentAmmo = this.maxAmmo + ammo.amount;
                     Destroy(item.gameObject);
                 }
-
-
             }  
             
         }
