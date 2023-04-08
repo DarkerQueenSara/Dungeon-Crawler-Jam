@@ -40,7 +40,7 @@ namespace UI
             backToTitle.gameObject.SetActive(false);
             exitButton.gameObject.SetActive(false);
             _audioManager = GetComponent<AudioManager>();
-            _audioManager.Play("MenuMusic");
+            _audioManager.Play("Credits");
         }
 
 

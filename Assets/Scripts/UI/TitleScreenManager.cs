@@ -19,7 +19,7 @@ namespace UI
         /// The start game button
         /// </summary>
         [Header("Buttons")] public Button startButton;
-        public Button loadButton;
+        //public Button loadButton;
         /// <summary>
         /// The tutorial button
         /// </summary>
@@ -57,12 +57,12 @@ namespace UI
         private void Start()
         {
             startButton.onClick.AddListener(StartGame);
-            if (File.Exists(GameManager.Instance.savePath)){
+            /*if (File.Exists(GameManager.Instance.savePath)){
                 loadButton.onClick.AddListener(LoadGame);
             } else
             {
                 loadButton.GetComponent<Image>().color = Color.gray;
-            }
+            }*/
             tutorialButton.onClick.AddListener(ShowTutorial);
             backButton.onClick.AddListener(ShowTitleScreen);
             exitButton.onClick.AddListener(ExitGame);
@@ -74,7 +74,7 @@ namespace UI
         {
             startButton.gameObject.SetActive(false);
             tutorialButton.gameObject.SetActive(false);
-            loadButton.gameObject.SetActive(false);
+            //loadButton.gameObject.SetActive(false);
             exitButton.gameObject.SetActive(false);
             _audioManager.Play("LabyrinthOfDeath");
             // fade title in
@@ -87,7 +87,7 @@ namespace UI
             _audioManager.Play("Stinger");
             startButton.gameObject.SetActive(true);
             tutorialButton.gameObject.SetActive(true);
-            loadButton.gameObject.SetActive(true);
+            //loadButton.gameObject.SetActive(true);
             exitButton.gameObject.SetActive(true);
             
             yield return new WaitForSeconds(1f);
