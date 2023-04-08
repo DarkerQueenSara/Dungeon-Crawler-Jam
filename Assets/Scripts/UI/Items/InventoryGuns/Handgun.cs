@@ -7,10 +7,10 @@ namespace UI.Items.InventoryGuns
     public class Handgun: InventoryGun
     {
 
-        private AudioManager _audioManager;
+        //private AudioManager _audioManager;
         public void Start()
         {
-            _audioManager = GetComponent<AudioManager>();
+            //_audioManager = GetComponent<AudioManager>();
             base.Start();
             item = ItemType.Handgun;
             damage = 50;

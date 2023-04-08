@@ -951,8 +951,8 @@ MonoBehaviour:
   obstacles:
     serializedVersion: 2
     m_Bits: 128
-  angle: 70
-  radius: 5
+  angle: 180
+  radius: 7
   chaseZombie: {fileID: 6468750998667893565}
   isInRange: 0
   manager: {fileID: 622302254641200882}

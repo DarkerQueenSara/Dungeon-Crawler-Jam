@@ -81,7 +81,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 318a73f159c2c8f418006828b6a407d2,
         type: 3}
       propertyPath: m_Name
-      value: EnvironmentHandgunAmmo
+      value: HandgunAmmoEnvironment
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 318a73f159c2c8f418006828b6a407d2,
         type: 3}
@@ -171,5 +171,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 479265bbc2f249d29575c80e5567cd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: 0
+  item: 1
   amount: 7

@@ -5,12 +5,12 @@ namespace UI.Items.InventoryGuns
 {
     public class Shotgun: InventoryGun
     {
-        private AudioManager _audioManager;
+        //private AudioManager _audioManager;
 
         
         private void Start()
         {
-            _audioManager = GetComponent<AudioManager>();
+            //_audioManager = GetComponent<AudioManager>();
             base.Start();
             item = ItemType.Shotgun;
             damage = 100;
